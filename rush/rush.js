@@ -50,7 +50,9 @@ document.onkeypress = function(k){
         fill()}
     else if(k.keyCode == 115){
         console.log("s");
-        current.position.y += 1;
+        if(current.position.y < 18){
+            current.position.y += 1;
+        }
         console.log(current.position);
         fill();}
     else if(k.keyCode == 119){
