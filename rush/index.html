@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Rush</title>
+    <style>
+		html, body {
+			height:100%;
+			margin:0;
+			padding:0;
+			}
+        body {
+            background: #232323;
+            font-family: Helvetica;
+            font-size: 2em;
+            text-align: center;
+			color: white
+        }
+		h1{
+			margin:0;
+			padding:0;
+			vertical-align:middle;
+			display:table-cell;
+		}
+		#section1 {
+			width:100%;
+			min-height:100%;
+			text-align:center;
+			display:table;
+			position: fixed;
+}
+        canvas {
+            border: solid .2em #fff;
+            height: 90vh;
+			margin-top: 5vh
+        }
+        #side {
+            position: absolute;
+            right: .5em;
+            top: 50%;
+            transform: translate(0,-50%);
+        }
+        #side p{
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+<div class="section" id="section1">    
+    <h1>RUSH</h1>
+</div>
+
+<div id="side">
+    <p> Score: </p>
+    <p> Highscore: </p>
+</div>
+<canvas id="rush" width="240" height="400"></canvas>
+
+
+
+
+<script src="rush.js"></script>
+</body>
+</html>
