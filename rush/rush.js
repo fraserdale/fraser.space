@@ -42,21 +42,21 @@ document.onkeypress = function(k){
         console.log("a");
         current.position.x -= 1;
         console.log(current.position);
-        draw(current.shape,current.position.x,current.position.y)}
+        fill();}
     else if(k.keyCode == 100){
         console.log("d");
         current.position.x += 1;
         console.log(current.position);
-        draw(current.shape,current.position.x,current.position.y)}
+        fill()}
     else if(k.keyCode == 115){
         console.log("s");
         current.position.y += 1;
         console.log(current.position);
-        draw(current.shape,current.position.x,current.position.y)}
+        fill();}
     else if(k.keyCode == 119){
         console.log("w")}
 };
-fill()
+fill();
 //testing to make sure correct array is showing
 //console.log(current.shape[0]);
 //console.log(current.shape[0][0]);
