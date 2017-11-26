@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var score = 0
+function setCookie() {
+	var cookie = document.getElementById("searchTxt").value;
+	var value = document.getElementById("value").value;
+    document.cookie = cookie + " = " + value;
+}
+
+function increaseCookie() {
+	temp =  "," + document.getElementById("increase").value;
+	score += temp;
+	var highscore = "Highscore "
+    document.cookie = highscore + " = " + score;
+}
+
+
+function destroyCookie() {
+	var cookie = document.getElementById("destroy").value;
+	document.cookie = cookie + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'; 
+	document.getElementById("destroy").value = ""
+}
+
+
+function checkCookie() {
+	document.getElementById("storedCookies").innerHTML = "Stored cookies are: " + document.cookie
+}
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+function splitCookie(){
+var cookies_array = []
+	temp = document.cookie
+	tempcookies_array = temp.substring(10).split(',');
+	for (i = 0; i < 6; i++){
+		cookies_array[i] = parseInt(tempcookies_array[i]);
+		}
+	cookies_array.sort(compareNumbers)
+	console.log(cookies_array);
+}
+
+</script>
+</head>
+
+<button onclick="checkCookie()">Check cookies</button>
+<button onclick="setCookie()">Set cookies</button>
+<button onclick="destroyCookie()">Destroy cookies</button>
+<button onclick="increaseCookie()">Increase cookies</button>
+<button onclick="splitCookie()">SPLT cookies</button>
+<br>
+<p> cookie name </p> <input id="searchTxt"></input>
+<p> cookie value </p> <input id="value"></input>
+<p> Delete cookie name </p> <input id="destroy"> </input>
+<p> Increase cookie by </p> <input id="increase"> </input>
+
+<br>
+
+<p id="storedCookies"> Stored cookies are: </p>
+
+</body>
+</html>

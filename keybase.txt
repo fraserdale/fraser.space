@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/fraserdale
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://fraser.today
+  * I am fraserdale (https://keybase.io/fraserdale) on keybase.
+  * I have a public key with fingerprint 5706 E597 6D7D 951C F28B  653C F591 AD73 9200 ADE4
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101ce48c66fdbee321e05d276cb5e08365b85ae90aa19f30b7943e7a04b44454a0d0a",
+            "fingerprint": "5706e5976d7d951cf28b653cf591ad739200ade4",
+            "host": "keybase.io",
+            "key_id": "f591ad739200ade4",
+            "kid": "0101ce48c66fdbee321e05d276cb5e08365b85ae90aa19f30b7943e7a04b44454a0d0a",
+            "uid": "520521ee919c4a70d3032e5e971cef19",
+            "username": "fraserdale"
+        },
+        "service": {
+            "hostname": "fraser.today",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1492030486,
+    "expire_in": 157680000,
+    "prev": "b0c60e055c7de06c887b4b2629b5532499d1ac2d67fd2b1f81aed81cb27daba9",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.68
+Comment: https://keybase.io/crypto
+
+yMIiAnicrVJtaE1hHL/Dhi2hRCbNzgdlhue8POc558qQzZg2L3Etput5O3enzTnX
+ueeO6zZDaUWrqSWatbHxYVErZmTykiQviTBJSZl5yyTl7YvnLD4oHz1fnrff7/f/
+/X/9b0wYHcrOaNh0efjS460FGXeuHUmGKj+2TE1LxGUpKZyWavjIxmsZT/jRGptJ
+YQnIQKZcM6iuW4xwrioyB5ApSKcEcmCoOiQGxNwEGMumpQKCTE3lCAONaJoGNQwY
+wFKhZNlOjHtxz3Z8IQsR0Dk0kc4QM6FMLcUgOlSpBU0ZM6SaCgCYcU0Qq91EwBDm
+CE7w+bYr3sQlOmLvH/j/7Ds5IgcVAIUCN2WTahgBpgJV4ZCbSFSxZDMAJrjn4G08
+cOUJpx7DtVyqL5TEsc6mPIg26OUvzHzfZTgl2HHP9V3q1oqfat+PhwOin4oHyB2c
+RH9rRIntMBGkINRxL2G7jhSWBZL6diAqayIHFWiGXijxnXHb41E7QECkG0CsoAyv
+E5IEUB2IPCBFjAOdGgYiGlF0xSQQqopmmkzGVGE6sphCZMuQMWeGTImCGCY4aDfB
+tzuuFEbCJo4JyYQdc7Cf9ETL169WjQllZIeyMkcFAxbKHj/pz9jFPo8LnUKJ5Pcp
+6tJ7F/MrhmcsX2/sebw09OlB44V1sw9nH+zub1wyNH4wb9+Xmzk/hnJPH7qfvpiq
+bHue7iyfsizZ+HphZemC85HmdwXHqlfnS8N7rrQ876fTrZ6iwf6drDw3Sr9N7Mm8
+m/Fzo/Pi1NnYweKG1pfbZk7dVNyTfvrp+HtcNqezrHN2e2HRowdPni1u7hrIzO3Y
+v6o+q0sdOD/2TI3a+25NZMOKyVsXbfZZ37nbbZVj3gz1teeXHoic/Lp2NyoxrWd7
+Zzj6rbf3ex9KRtPtki271r6KtKaPPtqhFg0Mug358aYT0y5FqhZWHAjR7o71VStT
+ZXN/fvjenZeXo82a9/5C9BcNYj+G
+=aOQn
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/fraserdale
+
+==================================================================

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <title>StockX Fee Calculator</title>
+    <style>
+        *{
+            font-family: Helvetica,Arial,sans-serif;
+        }
+        h1{
+            margin-bottom: 10%;
+        }
+        p{
+            font-weight: bold;
+        }
+
+        body{
+            margin-top: 10px;
+        }
+
+        #input span{
+            float: right;
+        }
+        .outputinfo{
+            font-weight: normal;
+            float: right;
+        }
+        .fee{
+            color: red;
+        }
+        .button {
+            background-color: #41ad33;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px 4px 0px;
+            cursor: pointer;
+            float:right;
+        }
+        .clear {
+            clear: both;
+        }
+        select{
+            padding: 15px 9.25px ;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px 4px 0px;
+            cursor: pointer;
+        }
+
+        .middle{
+            margin-bottom: 200px;
+        }
+
+
+
+        @media (min-width:961px){
+            .middle{
+                width:34%;
+                margin:0 auto;
+                float: left;
+                padding-left: 10px;
+            }
+            .left{
+                float:left;
+                text-align: center;
+                width: 16%;
+                margin-right: 8%;
+                margin-left: 8%
+            }
+            .right{
+                float: right;
+                text-align: center;
+                width: 16%;
+                margin-left: 8%;
+                margin-right: 8%;
+            }
+            .divider{
+                position:absolute;
+                top:10%;
+                bottom:10%;
+                border-left:1px solid darkslategrey;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="left">
+    <h2 style="text-align: center;"> GBP &#x2192; USD</h2>
+    <!--
+    <input id="GBP" name="conversion" style="box-sizing:border-box; width: 100%;" placeholder="£" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required>
+    <br>
+    &lt;!&ndash;<button class=" button" style="margin: auto; width: 100%; margin-bottom: 16px; margin-top: 16px" onclick="conversion()" >Convert</button> &ndash;&gt;
+    <br>
+    <p id="output"></p>-->
+
+    <br>
+    <br>
+    <p> </p>
+    <input type="text" class="amount" placeholder="£GBP" style="float: right; box-sizing:border-box; width: 100%;" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required>
+    <br>
+    <br>
+    <p style="float: left">USD: </p>  <p class="answer" style="float: right"></p>
+    <br>
+    <button type="submit" class="button submit" value="Convert!" style="margin: auto; width: 100%; margin-bottom: 16px; margin-top: 16px">Convert</button>
+
+    <script src="jquery.js"></script>
+    <script src="currency.js"></script>
+</div>
+
+
+
+<div class="right">
+    <h1 style="text-align: center;"> <span style="color: #E6353D">e</span><span style="color: #0E63D6">b</span><span style="color: #F4AD13">a</span><span style="color: #85B817">y</span> </h1>
+
+    <p> Buy price</p>
+    <input id="ebuyprice" style="box-sizing:border-box; width: 100%;" placeholder="£" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required>
+    <p> Sale price</p>
+    <input id="esaleprice" style="box-sizing:border-box; width: 100%;" placeholder="£" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required>
+    <br>
+    <!--<button class=" button" style="margin: auto; width: 100%; margin-bottom: 16px; margin-top: 16px" onclick="conversion()" >Convert</button> -->
+    <br>
+    <p><span style="float: left"> Total Payout:</span><span id="eoutput" style="font-weight: 100; float: right"></span></p>
+    <br>
+    <p><span style="float: left"> Profit:</span>  <span id="eprofit" style="font-weight: 100; float: right"></span></p>
+</div>
+<div class="divider" style="left: 30%"></div>
+<div class="divider" style="left: 70%"></div>
+
+
+<div class="middle" style="margin: 0 auto">
+    <h1>Stock<span style="color: #41ad33">X</span>  Fee Calculator</h1>
+
+    <div>
+        <p style="position: absolute">Seller Level:</p>
+        <select id="sellerlevel" style="float: right;" class="inputchange">
+            <option value="0.095" >1</option>
+            <option value="0.09" >2 </option>
+            <option value="0.085" >3</option>
+            <option value="0.08" >4</option>
+        </select>
+    </div>
+    <div id="input" class="clear">
+
+        <span><input id="retail" class="inputchange retail" style="text-align: right" placeholder="$" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required></span>
+        <p>
+            Retail Price:
+        </p>
+        <span> <input id="resell" class="inputchange" style="text-align: right" placeholder="$" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46' required></span>
+        <p>
+            Resell Price:
+        </p>
+        <div >
+            <p>
+                <select id="shipping" style="float: right;" class="inputchange">
+                    <option value="0" >Free</option>
+                    <option value="-30" >$30 </option>
+                    <option value="-20" >$20</option>
+                                        
+                </select>
+
+
+                Shipping:
+            </p>
+
+
+        </div>
+    </div>
+    <div class="output clear">
+
+        <p id="transactionfee" >
+            Transaction Fee
+
+            <span id="sellerfeeperc" >
+		 (9.5%):
+		</span>
+
+            <span id="transaction" class="fee outputinfo">
+
+        </span>
+        </p>
+        <p>
+            Payment Proc. (3%):
+            <span id="payment" class="fee outputinfo">
+
+        </span>
+        </p>
+        <p>
+            Shipping fee:
+            <span id="shippingfee" class="fee outputinfo">
+
+        </span>
+        </p>
+        <hr>
+        <p>
+            Total fees:
+            <span id="totalfee" class="fee outputinfo" >
+
+        </span>
+        </p>
+        <hr>
+        <p>
+            Total payout:
+            <span id="total" class="outputinfo">
+
+        </span>
+        </p>
+        <p >
+            Total profit:
+            <span id="profit" class="outputinfo">
+
+        </span>
+        </p>
+
+
+        <div id="paypal_option" style="visibility: visible; display: block" class="clear">
+            <p> Paypal Fee:
+                <span id="paypalfee" class="outputinfo"> </span>
+            </p>
+            <p>
+                Total after Paypal fee:
+                <span id="afterpaypalfee" class="outputinfo"> </span>
+            </p>
+        </div>
+        <button class="button GBP" id="conv_currency">Convert to £GBP</button>
+    </div>
+</div>
+</div>
+
+
+</body>
+
+
+<script>
+    $('.inputchange').on('input', function() {
+        document.getElementById("conv_currency").innerHTML = "Change to £GBP";
+        $(".USD").removeClass("USD").addClass("GBP");
+        document.getElementById("paypal_option").style.visibility = "visible";
+        var retailP = parseInt(document.getElementById('retail').value);
+        var resellP = parseInt(document.getElementById('resell').value);
+        shippingP = parseInt(document.getElementById('shipping').value);
+        TransactionSellerFee = (document.getElementById('sellerlevel').value);
+        transactionP = (resellP * TransactionSellerFee).toFixed(2) * -1;
+        paymentP = (resellP * 0.03).toFixed(2) * -1;
+        totalfeeP = (shippingP + transactionP + paymentP).toFixed(2);
+        totalP = (resellP + transactionP + paymentP + shippingP);
+        profitP = (totalP - retailP).toFixed(2);
+        ppfee = (profitP * 0.03).toFixed(2);
+        ppprofit = 0;
+        if (ppfee > 0 ){
+            ppprofit = (profitP - ppfee).toFixed(2)
+        }
+        else{
+            ppprofit = (parseFloat(profitP) + parseFloat(ppfee)).toFixed(2)
+        }
+
+        if (retailP + resellP) {
+            document.getElementById("transaction").innerHTML = "$" + transactionP.toFixed(2);
+            document.getElementById("payment").innerHTML = " $" + paymentP.toFixed(2);
+            document.getElementById("shippingfee").innerHTML = "$" + shippingP.toFixed(2);
+            document.getElementById("total").innerHTML = "$" + totalP.toFixed(2);
+            document.getElementById("profit").innerHTML = "$" + profitP;
+            document.getElementById("totalfee").innerHTML = "$" + totalfeeP;
+            document.getElementById("paypalfee").innerHTML ="$" + ppfee;
+            document.getElementById("afterpaypalfee").innerHTML ="$" + ppprofit;
+
+        }
+        if (totalP < 0) {
+            document.getElementById("total").style.color = "red";
+        }
+        else {
+            document.getElementById("total").style.color = "green";
+        }
+        ;
+        if (profitP <= 0) {
+            document.getElementById("profit").style.color = "red";
+            document.getElementById("paypalfee").style.color = "red";
+            document.getElementById("afterpaypalfee").style.color = "red";
+        }
+        else {
+            document.getElementById("profit").style.color = "green";
+            document.getElementById("paypalfee").style.color = "green";
+            document.getElementById("afterpaypalfee").style.color = "green";
+        }
+        if (shippingP == 0) {
+            document.getElementById("shippingfee").style.color = "green";
+        }
+        else {
+            document.getElementById("shippingfee").style.color = "red";
+        }
+        if (document.getElementById("sellerlevel").value == 0.095){
+            document.getElementById("sellerfeeperc").innerHTML = "(9.5%):"
+        }
+        else if (document.getElementById("sellerlevel").value == 0.09){
+            document.getElementById("sellerfeeperc").innerHTML = "  (9%):"
+        }
+        else if (document.getElementById("sellerlevel").value == 0.085){
+            document.getElementById("sellerfeeperc").innerHTML = "  (8.5%):"
+        }
+        else if (document.getElementById("sellerlevel").value == 0.08){
+            document.getElementById("sellerfeeperc").innerHTML = "  (8%):"
+        }
+        ;
+    });
+</script>
+
+
+
+
+<script>
+    $(document).on('click',".GBP",function(){
+        if (document.getElementById("conv_currency").className == "button GBP") {
+            conv_transactionP = transactionP * 0.753118;
+            conv_paymentP = paymentP * 0.756783;
+            conv_shippingP = shippingP * 0.756783;
+            conv_totalfeeP = (totalfeeP * 0.756783).toFixed(2);
+            conv_totalP = totalP * 0.756783;
+            conv_profitP = (profitP * 0.756783).toFixed(2);
+
+            conv_paypal = (conv_profitP * 0.03).toFixed(2);
+            ppfee = (profitP * 0.03).toFixed(2);
+
+            conv_pp = 0;
+            ppprofit = 0;
+
+            if (conv_paypal > 0 ){
+                conv_pp = (conv_profitP - conv_paypal).toFixed(2)
+            }
+            else{
+                conv_pp = (parseFloat(conv_profitP) + parseFloat(conv_paypal)).toFixed(2)
+            }
+
+
+            if (ppfee > 0 ){
+                ppprofit = (profitP - ppfee).toFixed(2)
+            }
+            else{
+                ppprofit = (parseFloat(profitP) + parseFloat(ppfee)).toFixed(2)
+            }
+
+            document.getElementById("transaction").innerHTML = "£" + conv_transactionP.toFixed(2);
+            document.getElementById("payment").innerHTML = " £" + conv_paymentP.toFixed(2);
+            document.getElementById("shippingfee").innerHTML = "£" + conv_shippingP.toFixed(2);
+            document.getElementById("total").innerHTML = "£" + conv_totalP.toFixed(2);
+            document.getElementById("profit").innerHTML = "£" + conv_profitP;
+            document.getElementById("totalfee").innerHTML = "£" + conv_totalfeeP;
+            document.getElementById("conv_currency").innerHTML = "Convert to $USD";
+            $(".GBP").removeClass("GBP").addClass("USD");
+            document.getElementById("paypalfee").innerHTML ="£" + conv_paypal;
+            document.getElementById("afterpaypalfee").innerHTML ="£" + conv_pp;
+            document.getElementById("paypal_option").style.visibility = "visible";
+
+
+        }
+    });
+
+    $(document).on('click',".USD",function(){
+        if(document.getElementById("conv_currency").className == "button USD") {
+            document.getElementById("transaction").innerHTML = "$" + transactionP.toFixed(2);
+            document.getElementById("payment").innerHTML = " $" + paymentP.toFixed(2);
+            document.getElementById("shippingfee").innerHTML = "$" + shippingP.toFixed(2);
+            document.getElementById("total").innerHTML = "$" + totalP.toFixed(2);
+            document.getElementById("profit").innerHTML = "$" + profitP;
+            document.getElementById("totalfee").innerHTML = "$" + totalfeeP;
+            document.getElementById("conv_currency").innerHTML = "Convert to £GBP";
+            $(".USD").removeClass("USD").addClass("GBP");
+            document.getElementById("paypalfee").innerHTML ="$" + ppfee;
+            document.getElementById("afterpaypalfee").innerHTML ="$" + ppprofit;
+            document.getElementById("paypal_option").style.visibility = "visible";
+
+
+        }
+    });
+</script>
+
+
+
+<script>
+    $('#GBP').on('input', function() {
+        var pounds = parseInt(document.getElementById('GBP').value);
+        if(pounds){
+            document.getElementById("output").innerHTML = "$" + (pounds * 1.32778 ).toFixed(2);
+        }
+        else{
+            document.getElementById("output").innerHTML = "";
+        }
+
+    })
+
+</script>
+
+
+<script>
+
+    $('#esaleprice').on('input', function() {
+        var saleprice = parseInt(document.getElementById('esaleprice').value);
+        var buyprice = parseInt(document.getElementById('ebuyprice').value);
+        var profit = ((saleprice * 0.9) - buyprice);
+        if(saleprice){
+
+            document.getElementById("eoutput").innerHTML = "£" + (saleprice * 0.9 ).toFixed(2);
+            document.getElementById("eprofit").innerHTML = "£" + profit.toFixed(2);
+            if (profit > 0){
+                document.getElementById("eprofit").style.color = "green";
+            }
+            else{
+                document.getElementById("eprofit").style.color = "red";
+            }
+
+        }
+        else{
+            document.getElementById("output").innerHTML = "";
+        }
+
+    })
+
+</script>
+</html>
