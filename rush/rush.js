@@ -64,9 +64,9 @@ function maxwidth(shape){
 
             return(shape.length -1)
         }
-        else{
-            return(shape.length - 2) //error cause its sending for each row, first row send -2, second row sends -1
-        }
+        //else{
+        //    return(shape.length - 2) //error cause its sending for each row, first row send -2, second row sends -1
+        //}
     }
 }
 
