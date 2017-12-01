@@ -3,9 +3,9 @@ var cont = canvas.getContext('2d');
 cont.scale(20, 20);
 
 var shapes =[
-    [1,1,0],
-    [0,1,1],
-    [0,0,0]
+    [0,0,0],
+    [1,1,1],
+    [0,0,1]
 ];
 
 function fill() {
@@ -35,38 +35,45 @@ var current ={
         x: 5,
         y: 0
     },
-    width:{
-        min: 0,
-        max: 0
-    }
 };
 
 function minwidth(shape){
-    for(var row = 0; row < shape.length; row++){
-        console.log("length " + shape[0].length)
-        //console.log(row);
-        if(shape[row][0] == 1){
-            console.log("First value filled.")
-            return(0)
+    var first = false
+    var count = 0
+    while (first == false && count < (shape.length -1)){
+        for(var row = 0; row < shape.length; row++){
+            console.log("length " + shape[0].length)
+            //console.log(row);
+            if(shape[row][0] == 1){
+                console.log("First value filled.")
+                first = true
+                return(0)
+            }
         }
-        else{
-            return(1)
-        }
+        count++
+    }
+    if (first == false){
+        return(1)
     }
 }
 
 function maxwidth(shape){
-    for(var row = 0; row < shape.length; row++){
-        console.log("length " + shape[0].length)
-        //console.log(row);
-        if(shape[row][shape.length -1 ] == 1){ //use - 1, i know the array will always be a square
-            console.log("Last value filled.")
-
-            return(shape.length -1)
+    var last = false
+    var count = 0
+    while (last == false && count < (shape.length -1)){
+        for(var row = 0; row < shape.length; row++){
+            console.log("length " + shape[0].length)
+            //console.log(row);
+            if(shape[row][shape.length -1 ] == 1){ //use - 1, i know the array will always be a square
+                console.log("Last value filled.")
+                last = true
+                return(shape.length -1)
+            }
         }
-        //else{
-        //    return(shape.length - 2) //error cause its sending for each row, first row send -2, second row sends -1
-        //}
+        count++
+    }
+    if (last == false){
+        return(shape.length - 2)
     }
 }
 
@@ -92,6 +99,20 @@ function checkLHS(){
     }
 }
 
+function checkBottom(){
+    total = 0
+    for (var i = 0; i < current.shape.length; i++) {
+        total += current.shape[current.shape.length - 1][i]
+    }
+    if (total == 0){
+        return 1
+    }
+    else{
+        return 0
+    }
+
+}
+
 
 document.onkeypress = function(k){
     if(k.keyCode == 97){
@@ -112,7 +133,7 @@ document.onkeypress = function(k){
         fill()}
     else if(k.keyCode == 115){
         console.log("s");
-        if(current.position.y < 18){
+        if(current.position.y - checkBottom() < 17){
             current.position.y += 1;
         }
         console.log(current.position);
@@ -121,6 +142,6 @@ document.onkeypress = function(k){
         console.log("w")}
 };
 fill();
-//testing to make sure correct array is showing
-//console.log(current.shape[0]);
-//console.log(current.shape[0][0]);
+//testing to make sure correct array is showin
+//console.log(current.shape[0])
+//console.log(current.shape[0][0])
