@@ -86,7 +86,7 @@ function drawBack(shape, posx, posy, backTable){
     document.getElementById("score").innerHTML = "Score: " + score
     document.cookie = "Highscore = 999";
     console.log(document.cookie)
-    document.getElementById("hscore").innerHTML = document.cookie
+    document.getElementById("hscore").innerHTML = "Highscore: " document.cookie[11:]
 
 
     for(var row = 0; row < shape.length; row++){
