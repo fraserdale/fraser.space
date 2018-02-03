@@ -62,6 +62,7 @@ for (var x = 0; x < 20; x++){
 
 function fill() {
     document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
+    document.getElementById("score").innerHTML = "Score: " + score
     cont.fillStyle = '#232323';
     cont.fillRect(0,0,canvas.width,canvas.height);
     draw(current.shape, current.position.x, current.position.y);
@@ -84,7 +85,7 @@ function draw(shape, posx, posy) {
 }
 
 function drawBack(shape, posx, posy, backTable){
-    document.getElementById("score").innerHTML = "Score: " + score
+
 
 
 
