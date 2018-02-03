@@ -1,7 +1,6 @@
 var canvas = document.getElementById('rush');
 var cont = canvas.getContext('2d');
 cont.scale(20, 20);
-document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
 var colours = ['orange','yellow','red','lime','blue','purple']
 var shapes =[
     [
@@ -62,6 +61,7 @@ for (var x = 0; x < 20; x++){
 }
 
 function fill() {
+    document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
     cont.fillStyle = '#232323';
     cont.fillRect(0,0,canvas.width,canvas.height);
     draw(current.shape, current.position.x, current.position.y);
