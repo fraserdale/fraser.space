@@ -84,7 +84,7 @@ function draw(shape, posx, posy) {
 
 function drawBack(shape, posx, posy, backTable){
     document.getElementById("score").innerHTML = "Score: " + score
-    document.cookie = "Highscore = " + score;
+    document.cookie = "Highscore = 999";
     console.log(document.cookie)
     document.getElementById("hscore").innerHTML = document.cookie.match('(^|;) ?' + "Highscore" + '=([^;]*)(;|$)');
 
