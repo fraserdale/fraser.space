@@ -50,6 +50,7 @@ function setCookie() {
     document.cookie = "highscore = " + score;
 }
 
+document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
 
 var backTable = [];
 for (var x = 0; x < 20; x++){
@@ -84,10 +85,7 @@ function draw(shape, posx, posy) {
 
 function drawBack(shape, posx, posy, backTable){
     document.getElementById("score").innerHTML = "Score: " + score
-    if(score > document.cookie.substr(10) > score){
-        document.cookie = "Highscore = " + score
-    }
-    document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
+
 
 
     for(var row = 0; row < shape.length; row++){
