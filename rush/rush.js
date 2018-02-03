@@ -85,7 +85,9 @@ function draw(shape, posx, posy) {
 function drawBack(shape, posx, posy, backTable){
     document.getElementById("score").innerHTML = "Score: " + score
     document.cookie = "highscore = " + score;
-    document.getElementById("highscore").innerHTML = document.cookie
+    document.cookie = "username=John Doe";
+
+
     for(var row = 0; row < shape.length; row++){
 
         for(var index = 0; index < shape.length; index++){
