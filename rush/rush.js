@@ -1,6 +1,7 @@
 var canvas = document.getElementById('rush');
 var cont = canvas.getContext('2d');
 cont.scale(20, 20);
+document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
 var colours = ['orange','yellow','red','lime','blue','purple']
 var shapes =[
     [
@@ -50,7 +51,6 @@ function setCookie() {
     document.cookie = "highscore = " + score;
 }
 
-document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
 
 var backTable = [];
 for (var x = 0; x < 20; x++){
