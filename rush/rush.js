@@ -83,6 +83,9 @@ function draw(shape, posx, posy) {
 }
 
 function drawBack(shape, posx, posy, backTable){
+    document.getElementById("score").innerHTML = "Score: " + score
+    document.cookie = "highscore = " + score;
+    document.getElementById("highscore").innerHTML = document.cookie
     for(var row = 0; row < shape.length; row++){
 
         for(var index = 0; index < shape.length; index++){
@@ -91,9 +94,6 @@ function drawBack(shape, posx, posy, backTable){
                 //console.log(backTable[row + posy][index + posx])
                 backTable[row + posy][index + posx] = 1
                 score += 1
-                document.getElementById("score").innerHTML = "Score: " + score
-                document.cookie = "highscore = " + score;
-                document.getElementById("highscore").innerHTML = document.cookie
             }
         }
     }
