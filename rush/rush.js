@@ -92,11 +92,14 @@ function drawBack(shape, posx, posy, backTable){
                 backTable[row + posy][index + posx] = 1
                 score += 1
                 document.getElementById("score").innerHTML = "Score: " + score
+                document.cookie = "highscore = " + score;
                 document.getElementById("highscore").innerHTML = document.cookie
             }
         }
     }
 }
+
+
 
 function drawGrid(backTable) {
     for (var y = 0; y < 20; y++) {
