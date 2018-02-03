@@ -46,6 +46,11 @@ var current ={
 
 var score = 0
 
+function setCookie() {
+    document.cookie = "highscore = " + score;
+}
+
+
 var backTable = [];
 for (var x = 0; x < 20; x++){
     var inner = [];
@@ -87,6 +92,7 @@ function drawBack(shape, posx, posy, backTable){
                 backTable[row + posy][index + posx] = 1
                 score += 1
                 document.getElementById("score").innerHTML = "Score: " + score
+                document.getElementById("highscore").innerHTML = document.cookie
             }
         }
     }
@@ -247,6 +253,10 @@ document.onkeypress = function(k){
         console.log("w")}
 };
 fill();
+
+
+
+
 //testing to make sure correct array is showin
 //console.log(current.shape[0])
 //console.log(current.shape[0][0])
