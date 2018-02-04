@@ -45,11 +45,7 @@ var current ={
 };
 
 var score = 0
-
-function setCookie() {
-    document.cookie = "highscore = " + score;
-}
-
+document.cookie = "Highscore=999"
 
 var backTable = [];
 for (var x = 0; x < 20; x++){
