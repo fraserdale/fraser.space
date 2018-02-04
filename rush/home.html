@@ -22,16 +22,16 @@
             transition: opacity 1s ease ;
             cursor: pointer;
         }
-        h1 {
-            margin: 0;
-            padding: 0;
-            vertical-align: middle;
-            display: table-cell;
-            width: 100%;
-            min-height: 100%;
-            text-align: center;
-            display: table;
-            position: fixed;
+        h1{
+            margin:0;
+            padding:0;
+
+            transition: all 1s ease ;
+
+        }
+        .middlePage{
+            padding-top: 45vh;
+            opacity: 0;
         }
         .middleText{
             display: flex;
@@ -42,12 +42,23 @@
         .hide{
             opacity: 0;
         }
+        .section1 {
+            width:100%;
+            min-height:100%;
+            text-align:center;
+
+            position: fixed;
+            transition: all 1s ease ;
+        }
     </style>
 
     <title>Rush</title>
 </head>
 <body>
-<h1 align="center" id="title">RUSH</h1>
+<div id="heading" class="section1">
+    <h1 align="center" class="" id="title">RUSH</h1>
+</div>
+
     <div class="mid">
         <div style="height: 33%" class="middleText" id="start" onclick="start()">
             START
@@ -63,11 +74,13 @@
 
 <script>
     function start() {
-       document.querySelector("body").classList.add("hide")
+       document.querySelector(".mid").classList.add("hide")
        setTimeout(function () {
-           window.location.href = "index.html"
-
+           document.querySelector("h1").classList.add("middlePage")
        },1000)
+        setTimeout(function () {
+            window.location.href = "index.html"
+        }, 2000)
     }
     function rules() {
         document.querySelector("body").classList.add("hide")
