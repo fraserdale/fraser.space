@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: #232323;
+            font-family: Helvetica;
+            font-size: 2em;
+            text-align: center;
+            color: white;
+            transition: opacity 1s ease ;
+        }
+        .mid {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -125px;
+            margin-top: -125px;
+            border: solid 1px white;
+            transition: opacity 1s ease ;
+            cursor: pointer;
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+            vertical-align: middle;
+            display: table-cell;
+            width: 100%;
+            min-height: 100%;
+            text-align: center;
+            display: table;
+            position: fixed;
+        }
+        .middleText{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .hide{
+            opacity: 0;
+        }
+    </style>
+
+    <title>Rush</title>
+</head>
+<body>
+<h1 align="center" id="title">RUSH</h1>
+    <div class="mid">
+        <div style="height: 33%" class="middleText" id="start" onclick="start()">
+            START
+        </div>
+        <div style="height: 34%" class="middleText" id="rules"  onclick="rules()">
+           RULES
+        </div>
+        <div style="height: 33%" class="middleText" id="highscore"  onclick="highscores()">
+            HIGHSCORE
+        </div>
+    </div>
+</body>
+
+<script>
+    function start() {
+       document.querySelector("body").classList.add("hide")
+       setTimeout(function () {
+           window.location.href = "index.html"
+
+       },1000)
+    }
+    function rules() {
+        document.querySelector("body").classList.add("hide")
+        setTimeout(function () {
+           alert("probably modal for the rules")
+           document.querySelector("body").classList.remove("hide")
+        },1000)
+    }
+    function highscores() {
+        document.querySelector("body").classList.add("hide")
+        setTimeout(function () {
+            alert("probably modal for the highscores")
+            document.querySelector("body").classList.remove("hide")
+        },1000)
+
+    }
+</script>
+
+</html>
