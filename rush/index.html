@@ -1,73 +1,102 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Rush</title>
     <style>
-		html, body {
-			height:100%;
-			margin:0;
-			padding:0;
-			}
         body {
             background: #232323;
             font-family: Helvetica;
             font-size: 2em;
             text-align: center;
-			color: white;
-            transition: all .5s ease ;
+            color: white;
+            transition: opacity 1s ease ;
         }
-        .hideBody{
+        .mid {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -125px;
+            margin-top: -125px;
+            border: solid 1px white;
+            transition: opacity 1s ease ;
+            cursor: pointer;
+        }
+        h1{
+            margin:0;
+            padding:0;
+
+            transition: all 1s ease ;
+
+        }
+        .middlePage{
+            padding-top: 45vh;
             opacity: 0;
         }
-		h1{
-			margin:0;
-			padding:0;
-			vertical-align:middle;
-			display:table-cell;
-		}
-		#section1 {
-			width:100%;
-			min-height:100%;
-			text-align:center;
-			display:table;
-			position: fixed;
-}
-        canvas {
-            border: solid .2em #fff;
-            height: 90vh;
-			margin-top: 5vh
+        .middleText{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
         }
-        .side {
-            position: absolute;
-            right: .5em;
-            top: 50%;
-            transform: translate(0,-50%);
-            transition: all .5s ease ;
+        .hide{
+            opacity: 0;
         }
-        #side p{
-            text-align: left;
-            padding: 5px;
-        }
+        .section1 {
+            width:100%;
+            min-height:100%;
+            text-align:center;
 
+            position: fixed;
+            transition: all 1s ease ;
+        }
     </style>
+
+    <title>Rush</title>
 </head>
-<body class="hideBody">
-<div id="section1">
-    <h1>RUSH</h1>
+<body>
+<div id="heading" class="section1">
+    <h1 align="center" class="" id="title">RUSH</h1>
 </div>
 
-<div id="side" class="side">
-    <p id="score"> Score: </p>
-    <p id="hscore">Highscore: </p>
-</div>
-<canvas id="rush" width="240" height="400"></canvas>
-
+    <div class="mid">
+        <div style="height: 33%" class="middleText" id="start" onclick="start()">
+            START
+        </div>
+        <div style="height: 34%" class="middleText" id="rules"  onclick="rules()">
+           RULES
+        </div>
+        <div style="height: 33%" class="middleText" id="highscore"  onclick="highscores()">
+            HIGHSCORE
+        </div>
+    </div>
+</body>
 
 <script>
-    window.onload = function() {
-        document.querySelector(".hideBody").classList.remove("hideBody")
+    function start() {
+       document.querySelector(".mid").classList.add("hide")
+       setTimeout(function () {
+           document.querySelector("h1").classList.add("middlePage")
+       },1000)
+        setTimeout(function () {
+            window.location.href = "game.html"
+        }, 2000)
+    }
+    function rules() {
+        document.querySelector("body").classList.add("hide")
+        setTimeout(function () {
+           alert("probably modal for the rules")
+           document.querySelector("body").classList.remove("hide")
+        },1000)
+    }
+    function highscores() {
+        document.querySelector("body").classList.add("hide")
+        setTimeout(function () {
+            alert("probably modal for the highscores")
+            document.querySelector("body").classList.remove("hide")
+        },1000)
+
     }
 </script>
 
-<script src="rush.js"></script>
-</body>
 </html>
