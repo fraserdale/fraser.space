@@ -9,9 +9,51 @@ var shapes =[
         [1,1,1]
     ],
     [
+        [1,0,0],
+        [1,0,0],
+        [1,1,0]
+    ],
+    [
+        [1,1,1],
+        [1,0,0],
+        [0,0,0]
+    ],
+    [
+        [0,1,1],
+        [0,0,1],
+        [0,0,1]
+    ],
+
+    [
         [0,0,0],
         [0,1,1],
         [0,1,1]
+    ],
+    [
+        [0,0,0],
+        [0,1,1],
+        [0,1,1]
+    ],
+    [
+        [0,0,0],
+        [0,1,1],
+        [0,1,1]
+    ],
+    [
+        [0,0,0],
+        [0,1,1],
+        [0,1,1]
+    ],
+
+    [
+        [0,0,0],
+        [1,1,0],
+        [0,1,1]
+    ],
+    [
+        [0,0,1],
+        [0,1,1],
+        [0,1,0]
     ],
     [
         [0,0,0],
@@ -19,28 +61,87 @@ var shapes =[
         [0,1,1]
     ],
     [
+        [0,0,1],
+        [0,1,1],
+        [0,1,0]
+    ],
+
+    [
         [0,0,0],
         [0,1,1],
         [1,1,0]
     ],
+    [
+        [1,0,0],
+        [1,1,0],
+        [0,1,0]
+    ],
+    [
+        [0,0,0],
+        [0,1,1],
+        [1,1,0]
+    ],
+    [
+        [1,0,0],
+        [1,1,0],
+        [0,1,0]
+    ],
+
     [
         [0,0,0],
         [1,0,0],
         [1,1,1]
     ],
     [
+        [1,1,0],
+        [1,0,0],
+        [1,0,0]
+    ],
+    [
+        [1,1,1],
+        [0,0,1],
+        [0,0,0]
+    ],
+    [
+        [0,0,1],
+        [0,0,1],
+        [0,1,1]
+    ],
+
+
+    [
         [0,0,0],
+            [0,1,0],
+            [1,1,1]
+        ],
+    [
+        [1,0,0],
+        [1,1,0],
+        [1,0,0]
+    ],
+    [
+        [1,1,1],
         [0,1,0],
-        [1,1,1]
-    ]
+        [0,0,0]
+    ],
+    [
+        [0,0,1],
+        [0,1,1],
+        [0,0,1]
+    ],
+
+
 ];
 
+var n = 0
+var counter = 0
+
 var current ={
-    shape: shapes[0],
+    shape: shapes[n],
     colour: colours[0],
     position: {
         x: 5,
-        y: 0
+        y: -2
     },
 };
 
@@ -61,6 +162,7 @@ function fill() {
     cont.fillRect(0,0,canvas.width,canvas.height);
     draw(current.shape, current.position.x, current.position.y);
     drawGrid(backTable)
+
 }
 
 
@@ -80,9 +182,6 @@ function draw(shape, posx, posy) {
 
 function drawBack(shape, posx, posy, backTable){
 
-
-
-
     for(var row = 0; row < shape.length; row++){
 
         for(var index = 0; index < shape.length; index++){
@@ -99,6 +198,9 @@ function drawBack(shape, posx, posy, backTable){
 
 
 function drawGrid(backTable) {
+    if(backTable[0][6] == 1){
+        alert("game over")
+    }
     for (var y = 0; y < 20; y++) {
         for (var x = 0; x < 12; x++) {
             if (backTable[y][x] == 1) {
@@ -144,12 +246,14 @@ function drop() {
 
 function collision() {
     drawBack(current.shape, current.position.x, current.position.y, backTable);
-    current.position.y = 0
+    current.position.y = -2
     current.position.x = 5
     var rand = Math.floor(Math.random()*6);
-    console.log(rand)
-    current.shape = shapes[rand]
+    console.log(n)
+    n = [rand*4]
+    current.shape = shapes[n]
     current.colour = colours[rand]
+    counter = 0
 }
 
 
@@ -159,7 +263,7 @@ function minwidth(shape){
     while (first == false && count < (shape.length -1)){
         for(var row = 0; row < shape.length; row++){
             if(shape[row][0] == 1){
-                console.log("First value filled.")
+                //console.log("First value filled.")
                 first = true
                 return(0)
             }
@@ -191,7 +295,7 @@ function maxwidth(shape){
 }
 
 function checkRHS(){
-    console.log(current.position.x + maxwidth(current.shape))
+    //(current.position.x + maxwidth(current.shape))
     if((current.position.x >= 11 - maxwidth(current.shape)) || backTable[current.position.y + 2 - checkBottom()][current.position.x + 1 + maxwidth(current.shape)] == 1){
 
         //console.log("edge found")
@@ -203,7 +307,7 @@ function checkRHS(){
 }
 
 function checkLHS(){
-    console.log(current.position.x + minwidth(current.shape))
+    //console.log(current.position.x + minwidth(current.shape))
     if ((current.position.x <= 0 - minwidth(current.shape))  || backTable[current.position.y + 2 - checkBottom()][current.position.x - 1 + minwidth(current.shape)] == 1){
         return false
     }else if((current.position.x > 0 - minwidth(current.shape)) ){
@@ -251,8 +355,20 @@ document.onkeypress = function(k){
         }
         //console.log(current.position);
         fill();}
-    else if(k.keyCode == 119){
-        console.log("w")}
+    else if(k.keyCode == 119) {
+        if (counter < 3) {
+            n++;
+            counter++
+        }else {
+            counter = 0;
+            n -= 3
+        }
+    current.shape = shapes[n]
+
+
+    fill()
+    console.log("n is = " + n)
+        console.log("counter is = " + counter)}
 };
 fill();
 
