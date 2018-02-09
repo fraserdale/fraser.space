@@ -85,7 +85,7 @@
     function rules() {
         document.querySelector("body").classList.add("hide")
         setTimeout(function () {
-           alert("probably modal for the rules")
+           Document.getElementById('.mid').classList.remove("mid")
            document.querySelector("body").classList.remove("hide")
         },1000)
     }
