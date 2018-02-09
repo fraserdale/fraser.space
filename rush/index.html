@@ -22,6 +22,18 @@
             transition: opacity 1s ease ;
             cursor: pointer;
         }
+        .mid2 {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -125px;
+            margin-top: -125px;
+            border: solid 1px white;
+            transition: opacity 1s ease ;
+            cursor: pointer;
+        }
         h1{
             margin:0;
             padding:0;
@@ -59,7 +71,7 @@
     <h1 align="center" class="" id="title">RUSH</h1>
 </div>
 
-    <div class="mid">
+    <div class="mid" id="box">
         <div style="height: 33%" class="middleText" id="start" onclick="start()">
             START
         </div>
@@ -86,6 +98,7 @@
         document.querySelector("body").classList.add("hide")
         setTimeout(function () {
            Document.getElementByClass('.mid').classList.remove("mid")
+           Document.getElementByClass('#box').classList.remove("mid2")
            document.querySelector("body").classList.remove("hide")
         },1000)
     }
