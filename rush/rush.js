@@ -198,9 +198,6 @@ function drawBack(shape, posx, posy, backTable){
 
 
 function drawGrid(backTable) {
-    if(backTable[0][6] == 1){
-        alert("game over")
-    }
     for (var y = 0; y < 20; y++) {
         for (var x = 0; x < 12; x++) {
             if (backTable[y][x] == 1) {
@@ -220,6 +217,12 @@ var interval = setInterval(drop,1000);
 var n = 0
 
 function drop() {
+    fill()
+    if(backTable[0][6] == 1 || backTable[0][5] == 1 || backTable[0][7] == 1){
+        alert("GAME OVER")
+        clearInterval(interval)
+        //window.open("index.html","_self")
+    }
     if(current.position.y - checkBottom() == 17){
         collision()
     }
@@ -239,8 +242,8 @@ function drop() {
     }
     if(current.position.y - checkBottom() < 17){
         current.position.y += 1;
-        fill()
     }
+
 }
 
 
@@ -350,9 +353,7 @@ document.onkeypress = function(k){
         fill()}
     else if(k.keyCode == 115){
         //console.log("s");
-        if(current.position.y - checkBottom() < 17){
             drop()
-        }
         //console.log(current.position);
         fill();}
     else if(k.keyCode == 119) {
