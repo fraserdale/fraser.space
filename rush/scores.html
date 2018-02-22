@@ -86,7 +86,8 @@
     totalCookie = document.cookie.split("=");
     scoresCookie = totalCookie[1];
     scores = scoresCookie.split(",");
-    console.log(scores)
+    console.log(scores);
+    document.getElementById('#score1').innerHTML = scores[0]
 </script>
 
 </html>
