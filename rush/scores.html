@@ -61,8 +61,8 @@
     <div style="height: 17.5%; text-align: center"  class="middleText" id="start">
         Highscores
     </div>
-    <div style="height: 16.5%" class="middleText" id="score1">
-        1.
+    <div style="height: 16.5%" class="middleText">
+        <p id="score1">1. </p>
     </div>
     <div style="height: 16.5%" class="middleText" id="score2">
         2.
@@ -87,7 +87,7 @@
     scoresCookie = totalCookie[1];
     scores = scoresCookie.split(",");
     console.log(scores);
-    document.getElementById('#score1').textContent = scores[0]
+    document.getElementById('#score1').innerHTML = scores[0]
     console.log("inner set")
 </script>
 
