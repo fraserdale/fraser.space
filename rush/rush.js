@@ -146,7 +146,6 @@ var current ={
 };
 
 var score = 0
-document.cookie = "Highscore=999"
 
 var backTable = [];
 for (var x = 0; x < 20; x++){
