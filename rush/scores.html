@@ -82,14 +82,14 @@
 <script>
     window.onload = function() {
         console.log(document.cookie); // 4th
+        var totalCookie = document.cookie.split("=");
+        var scoresCookie = totalCookie[1];
+        var scores = scoresCookie.split(",");
+        console.log(scores);
+        document.getElementById('score1').innerHTML = scores[0];
+        console.log("inner set")
     };
-    document.
-    totalCookie = document.cookie.split("=");
-    scoresCookie = totalCookie[1];
-    scores = scoresCookie.split(",");
-    console.log(scores);
-    document.getElementById('score1').innerHTML = "lol";
-    console.log("inner set")
+
 </script>
 
 </html>
