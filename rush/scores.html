@@ -62,19 +62,19 @@
         Highscores
     </div>
     <div style="height: 16.5%" class="middleText">
-        <p id="score1">1. </p>
+        1. <span id="score1"></span>
     </div>
-    <div style="height: 16.5%" class="middleText" id="score2">
-        2.
+    <div style="height: 16.5%" class="middleText">
+        2. <span id="score2"></span>
     </div>
-    <div style="height: 16.5%" class="middleText" id="score3">
-        3.
+    <div style="height: 16.5%" class="middleText" >
+        3. <span id="score3"></span>
     </div>
-    <div style="height: 16.5%" class="middleText" id="score4">
-        4.
+    <div style="height: 16.5%" class="middleText">
+        4. <span id="score4"></span>
     </div>
-    <div style="height: 16.5%" class="middleText" id="score5">
-        5.
+    <div style="height: 16.5%" class="middleText">
+        5. <span id="score5"></span>
     </div>
 </div>
 </body>
@@ -83,11 +83,12 @@
     window.onload = function() {
         console.log(document.cookie); // 4th
     };
+    document.
     totalCookie = document.cookie.split("=");
     scoresCookie = totalCookie[1];
     scores = scoresCookie.split(",");
     console.log(scores);
-    document.getElementById('#score1').innerHTML = "lol";
+    document.getElementById('score1').innerHTML = "lol";
     console.log("inner set")
 </script>
 
