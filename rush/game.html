@@ -64,8 +64,13 @@
 
 <script>
     window.onload = function() {
-        document.querySelector(".hideBody").classList.remove("hideBody")
+        document.querySelector(".hideBody").classList.remove("hideBody");
+        var totalCookie = document.cookie.split("=");
+        var scoresCookie = totalCookie[1];
+        var scores = scoresCookie.split(",");
+        document.querySelector("hscore").innerHTML = "Highscore: " + scores[0]
     }
+
 </script>
 
 <script src="rush.js"></script>
