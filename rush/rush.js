@@ -206,7 +206,6 @@ function drawGrid(backTable) {
 
         }
     }
-    document.getElementById("hscore").innerHTML = "Highscore: " + document.cookie.substr(10)
     document.getElementById("score").innerHTML = "Score: " + score
 }
 
