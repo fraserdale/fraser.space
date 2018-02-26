@@ -68,6 +68,7 @@
         var totalCookie = document.cookie.split("=");
         var scoresCookie = totalCookie[1];
         var scores = scoresCookie.split(",");
+        console.log(scores)
         document.querySelector("hscore").innerHTML = "Highscore: " + scores[0]
     }
 
