@@ -138,38 +138,38 @@
 </body>
 <script>
     counter = 0;
-    start = '[\r {\r';
-    end = '\r }\r]';
+    start = '[\r    {\r';
+    end = '\r    }\r]';
     function output() {
         if (counter < 1){
-            old='  "site": "footpatrol",' +
-                '\r  "email": "' + document.getElementById('email').value + '",' +
-                '\r  "password": "' + document.getElementById('password').value + '",' +
-                '\r  "card": {' +
-                '\r   "number": "' + document.getElementById('cnum').value + '",' +
-                '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
-                '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
-                '\r   "cvv": "' + document.getElementById('cvv').value + '"' +
-                '\r  },' +
-                '\r  "guest": false,' +
-                '\r  "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
-                '\r  "pid": "' + document.getElementById('pid').value + '",' +
-                '\r  "size": "' + document.getElementById('size').value + '"';
+            old='       "site": "footpatrol",' +
+                '\r       "email": "' + document.getElementById('email').value + '",' +
+                '\r       "password": "' + document.getElementById('password').value + '",' +
+                '\r       "card": {' +
+                '\r            "number": "' + document.getElementById('cnum').value + '",' +
+                '\r            "expiry_month": "' + document.getElementById('expMonth').value + '",' +
+                '\r            "expiry_year": "' + document.getElementById('expYear').value + '",' +
+                '\r            "cvv": "' + document.getElementById('cvv').value + '"' +
+                '\r       },' +
+                '\r       "guest": false,' +
+                '\r       "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
+                '\r       "pid": "' + document.getElementById('pid').value + '",' +
+                '\r       "size": "' + document.getElementById('size').value + '"';
         }
         else if(counter > 0){
-            old = old+ '\r },\r { \r  "site": "footpatrol",' +
-                '\r  "email": "' + document.getElementById('email').value + '",' +
-                '\r  "password": "' + document.getElementById('password').value + '",' +
-                '\r  "card": {' +
-                '\r   "number": "' + document.getElementById('cnum').value + '",' +
-                '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
-                '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
-                '\r   "cvv": "' + document.getElementById('cvv').value + '"' +
-                '\r  },' +
-                '\r  "guest": false,' +
-                '\r  "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
-                '\r  "pid": "' + document.getElementById('pid').value + '",' +
-                '\r  "size": "' + document.getElementById('size').value + '"';
+            old = old+ '\r    },\r    { \r        "site": "footpatrol",' +
+                '\r       "email": "' + document.getElementById('email').value + '",' +
+                '\r       "password": "' + document.getElementById('password').value + '",' +
+                '\r       "card": {' +
+                '\r            "number": "' + document.getElementById('cnum').value + '",' +
+                '\r            "expiry_month": "' + document.getElementById('expMonth').value + '",' +
+                '\r            "expiry_year": "' + document.getElementById('expYear').value + '",' +
+                '\r            "cvv": "' + document.getElementById('cvv').value + '"' +
+                '\r       },' +
+                '\r       "guest": false,' +
+                '\r       "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
+                '\r       "pid": "' + document.getElementById('pid').value + '",' +
+                '\r       "size": "' + document.getElementById('size').value + '"';
         }
         console.log(counter);
         counter++
