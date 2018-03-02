@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mesh task creator</title>
+    <style>
+        p{
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Mesh task creator
+</h1>
+<h3>
+    take this output and paste it ALL into task.json
+</h3>
+<div>
+    <p style="float: left"> Site:</p> <button> footpatrol</button>
+    <button disabled> Size?</button>
+    <button disabled> JD</button>
+</div>
+<div>
+    <label for="email">Account Email</label>
+    <input id="email"><br>
+    <label for="password">Account Password</label>
+    <input id="password"><br>
+</div>
+<div>
+    <label for="cnum">Card number</label>
+    <input id="cnum" value=""><br>
+    <label for="expMonth">Exp month</label>
+    <select id="expMonth">
+        <option value="01">Jan</option>
+        <option value="02">Feb</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">Julu</option>
+        <option value="08">Aug</option>
+        <option value="09">Sept</option>
+        <option value="10">Oct</option>
+        <option value="11">Nov</option>
+        <option value="12">Dec</option>
+    </select>
+    <label for="expYear">Exp year</label>
+    <select id="expYear">
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+    </select>
+    <br>
+    <label for="cvv">CVV</label>
+    <input id="cvv" value=""><br>
+    <label for="retry">Retry if out of stock</label>
+    <select id="retry">
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+    </select>
+    <br>
+    <div style="float: left;">
+        <label for="pid">PID </label>
+        <input id="pid" value=""><br>
+    </div>
+    <p>071788   for Off white AJ1</p>
+    <br>
+    <label for="size">Size</label>
+    <select id="size">
+        <option value="any">any</option>
+        <option value="4">4</option>
+        <option value="4.5">4.5</option>
+        <option value="5">5</option>
+        <option value="5.5">5.5</option>
+        <option value="6">6</option>
+        <option value="6.5">6.5</option>
+        <option value="7">7</option>
+        <option value="7.5">7.5</option>
+        <option value="8">8</option>
+        <option value="8.5">8.5</option>
+        <option value="9">9</option>
+        <option value="9.5">9.5</option>
+        <option value="10">10</option>
+        <option value="10.5">10.5</option>
+        <option value="11">11</option>
+        <option value="11.5">11.5</option>
+        <option value="12">12</option>
+        <option value="12.5">12.5</option>
+        <option value="13">13</option>
+        <option value="13.5">13.5</option>
+        <option value="14">14</option>
+    </select>
+    <br>
+</div>
+<button onclick="output()">OUTPUT</button>
+<div>
+    <textarea id="JSONout" style="width: 500px;height: 500px"></textarea>
+    <p id="test"></p>
+</div>
+
+
+</body>
+<script>
+    function output() {
+        console.log("works");
+        document.getElementById('JSONout').value = '[\r {\r  "site": "footpatrol",' +
+            '\r  "email": "' + document.getElementById('email').value + '",' +
+            '\r  "password": "' + document.getElementById('password').value + '",' +
+            '\r  "card": {' +
+            '\r   "number": "' + document.getElementById('cnum').value + '",' +
+            '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
+            '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
+            '\r   "cvv": "' + document.getElementById('cvv').value + '",' +
+            '\r  },' +
+            '\r  "guest": "false"' +
+            '\r  "retryIfOutOfStock": "' + document.getElementById('retry').value + '",' +
+            '\r  "pid": "' + document.getElementById('pid').value + '",' +
+            '\r  "size": "' + document.getElementById('size').value + '",' +
+            '\r }\r]'
+    }
+</script>
+</html>
