@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <title>Mesh task creator</title>
     <style>
+        *{
+            font-family: "Work Sans","HelveticaNeue","Helvetica Neue",sans-serif;
+        }
         p{
             margin:0;
+        }
+        body{
+            width:100%;
+            margin:0;
+        }
+        .left{
+            margin-left: 10px;
+            width: 35%;
+            float: left;
+        }
+        .right{
+            margin-right: 10px;
+            float: left;
+
         }
     </style>
 </head>
 <body>
-<h1>
+<h1 align="center">
     Mesh task creator
 </h1>
-<h3>
-    take this output and paste it ALL into task.json
+<h3 align="center">
+    Take the output below paste it ALL into task.json
 </h3>
+<div class="left">
 <div>
     <p style="float: left"> Site:</p> <button> footpatrol</button>
     <button disabled> Size?</button>
@@ -65,11 +83,8 @@
         <option value=false>no</option>
     </select>
     <br>
-    <div style="float: left;">
-        <label for="pid">PID </label>
-        <input id="pid" value=""><br>
-    </div>
-    <p>071788   for Off white AJ1</p>
+    <label for="pid">PID </label>
+    <input id="pid" value="">
     <br>
     <label for="size">Size</label>
     <select id="size">
@@ -96,33 +111,56 @@
         <option value="13.5">13.5</option>
         <option value="14">14</option>
     </select>
-    <br>
 </div>
 <button onclick="output()">OUTPUT</button>
-<div>
-    <textarea id="JSONout" style="width: 500px;height: 500px"></textarea>
+</div>
+<div class="right">
+    <textarea id="JSONout" style="width: 500px;height: 480px"></textarea>
     <p id="test"></p>
 </div>
 
 
+
 </body>
 <script>
+    counter = 0;
+    start = '[\r {\r';
+    end = '\r }\r]';
     function output() {
-        console.log("works");
-        document.getElementById('JSONout').value = '[\r {\r  "site": "footpatrol",' +
-            '\r  "email": "' + document.getElementById('email').value + '",' +
-            '\r  "password": "' + document.getElementById('password').value + '",' +
-            '\r  "card": {' +
-            '\r   "number": "' + document.getElementById('cnum').value + '",' +
-            '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
-            '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
-            '\r   "cvv": "' + document.getElementById('cvv').value + '",' +
-            '\r  },' +
-            '\r  "guest": false' +
-            '\r  "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
-            '\r  "pid": "' + document.getElementById('pid').value + '",' +
-            '\r  "size": "' + document.getElementById('size').value + '",' +
-            '\r }\r]'
+        if (counter < 1){
+            old='  "site": "footpatrol",' +
+                '\r  "email": "' + document.getElementById('email').value + '",' +
+                '\r  "password": "' + document.getElementById('password').value + '",' +
+                '\r  "card": {' +
+                '\r   "number": "' + document.getElementById('cnum').value + '",' +
+                '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
+                '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
+                '\r   "cvv": "' + document.getElementById('cvv').value + '"' +
+                '\r  },' +
+                '\r  "guest": false,' +
+                '\r  "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
+                '\r  "pid": "' + document.getElementById('pid').value + '",' +
+                '\r  "size": "' + document.getElementById('size').value + '"';
+        }
+        else if(counter > 0){
+            old = old+ '\r },\r { \r  "site": "footpatrol",' +
+                '\r  "email": "' + document.getElementById('email').value + '",' +
+                '\r  "password": "' + document.getElementById('password').value + '",' +
+                '\r  "card": {' +
+                '\r   "number": "' + document.getElementById('cnum').value + '",' +
+                '\r   "expiry_month": "' + document.getElementById('expMonth').value + '",' +
+                '\r   "expiry_year": "' + document.getElementById('expYear').value + '",' +
+                '\r   "cvv": "' + document.getElementById('cvv').value + '"' +
+                '\r  },' +
+                '\r  "guest": false,' +
+                '\r  "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
+                '\r  "pid": "' + document.getElementById('pid').value + '",' +
+                '\r  "size": "' + document.getElementById('size').value + '"';
+        }
+        console.log(counter);
+        counter++
+        document.getElementById('JSONout').value = start + old + end;
+
     }
 </script>
 </html>
