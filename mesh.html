@@ -19,6 +19,9 @@
             width: 35%;
             float: left;
         }
+        .left div{
+            padding:5px;
+        }
         .right{
             margin-right: 10px;
             float: left;
@@ -35,19 +38,23 @@
 </h3>
 <div class="left">
 <div>
-    <p style="float: left"> Site:</p> <button> footpatrol</button>
+    <p style="float: left"> Site: </p> <button> footpatrol</button>
     <button disabled> Size?</button>
     <button disabled> JD</button>
 </div>
 <div>
     <label for="email">Account Email</label>
     <input id="email"><br>
+</div>
+ <div>
     <label for="password">Account Password</label>
     <input id="password"><br>
 </div>
 <div>
     <label for="cnum">Card number</label>
     <input id="cnum" value=""><br>
+</div>
+    <div>
     <label for="expMonth">Exp month</label>
     <select id="expMonth">
         <option value="01">Jan</option>
@@ -74,18 +81,23 @@
         <option value="2024">2024</option>
         <option value="2025">2025</option>
     </select>
-    <br>
+    </div>
+    <div>
     <label for="cvv">CVV</label>
-    <input id="cvv" value=""><br>
+    <input id="cvv" maxlength="4" value="">
+    </div>
+    <div>
     <label for="retry">Retry if out of stock</label>
     <select id="retry">
         <option value=true>yes</option>
         <option value=false>no</option>
     </select>
-    <br>
+    </div>
+    <div>
     <label for="pid">PID </label>
-    <input id="pid" value="">
-    <br>
+    <input id="pid" value="" placeholder="071788">
+    </div>
+    <div>
     <label for="size">Size</label>
     <select id="size">
         <option value="any">any</option>
@@ -111,8 +123,10 @@
         <option value="13.5">13.5</option>
         <option value="14">14</option>
     </select>
+    </div>
+    <button onclick="output()">OUTPUT</button>
 </div>
-<button onclick="output()">OUTPUT</button>
+
 </div>
 <div class="right">
     <textarea id="JSONout" style="width: 500px;height: 480px"></textarea>
