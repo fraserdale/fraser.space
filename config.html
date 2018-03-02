@@ -84,18 +84,18 @@
     start = '{\r';
     end = '\r}';
     function output() {
-        conf = '{\r "user": {' +
-            '\r  "email": "' + document.getElementById('key').value + '",' +
-            '\r  "key": "' + document.getElementById('email').value + '"' +
-            '\r },' +
-            '\r "atcRetry": {' +
-            '\r  "enabled": ' + document.getElementById('atcRetry').value + ',' +
-            '\r  "retryTime": "' + document.getElementById('retryTime').value + '"' +
-            '\r },' +
-            '\r "loginRetry": {' +
-            '\r  "enabled": ' + document.getElementById('loginRetry').value + ',' +
-            '\r  "retryTime": "' + document.getElementById('loginTime').value + '"' +
-            '\r }\r}';
+        conf = '{\r    "user": {' +
+            '\r        "email": "' + document.getElementById('key').value + '",' +
+            '\r        "key": "' + document.getElementById('email').value + '"' +
+            '\r    },' +
+            '\r    "atcRetry": {' +
+            '\r        "enabled": ' + document.getElementById('atcRetry').value + ',' +
+            '\r        "retryTime": "' + document.getElementById('retryTime').value + '"' +
+            '\r    },' +
+            '\r    "loginRetry": {' +
+            '\r        "enabled": ' + document.getElementById('loginRetry').value + ',' +
+            '\r        "retryTime": "' + document.getElementById('loginTime').value + '"' +
+            '\r    }\r}';
         document.getElementById('JSONout').value = conf
 
     }
