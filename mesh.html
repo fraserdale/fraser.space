@@ -95,6 +95,13 @@
     </select>
     </div>
     <div>
+        <label for="proxy">Proxy</label>
+        <select id="proxy">
+            <option value=true>yes</option>
+            <option value=false>no</option>
+        </select>
+    </div>
+    <div>
     <label for="pid">PID </label>
     <input id="pid" value="" placeholder="071788">
     </div>
@@ -155,7 +162,8 @@
                 '\r       "guest": false,' +
                 '\r       "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
                 '\r       "pid": "' + document.getElementById('pid').value + '",' +
-                '\r       "size": "' + document.getElementById('size').value + '"';
+                '\r       "size": "' + document.getElementById('size').value + '",' +
+                '\r       "proxy": ' + document.getElementById('proxy').value + '';
         }
         else if(counter > 0){
             old = old+ '\r    },\r    { \r        "site": "footpatrol",' +
@@ -170,7 +178,8 @@
                 '\r       "guest": false,' +
                 '\r       "retryIfOutOfStock": ' + document.getElementById('retry').value + ',' +
                 '\r       "pid": "' + document.getElementById('pid').value + '",' +
-                '\r       "size": "' + document.getElementById('size').value + '"';
+                '\r       "size": "' + document.getElementById('size').value + '",' +
+                '\r       "proxy": ' + document.getElementById('proxy').value + '';
         }
         console.log(counter);
         counter++
