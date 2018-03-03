@@ -47,17 +47,21 @@
             text-align: left;
             padding: 5px;
         }
+        a{
+            color: #FFF;
+            text-decoration: none;
+        }
 
     </style>
 </head>
 <body class="hideBody">
 <div style="z-index: 0" id="section1">
-    <h1>RUSH</h1>
+    <h1><a href="index.html">RUSH</a></h1>
 </div>
 
 <div id="side" class="side">
     <p id="score"> Score: </p>
-    <p id="hscore">Highscore: </p>
+    <a href="scores.html"><p id="hscore">Highscore: </p></a>
 </div>
 <canvas id="rush" width="240" height="400" style="z-index: 5"></canvas>
 
@@ -68,8 +72,9 @@
         var totalCookie = document.cookie.split("=");
         var scoresCookie = totalCookie[1];
         var scores = scoresCookie.split(",");
-        console.log(scores)
-        document.querySelector("hscore").innerHTML = "Highscore: " + scores[0]
+        console.log(scores);
+        len = (scores.length)-1;
+        document.getElementById("hscore").innerText = "Highscore: " + scores[len]
     }
 
 </script>

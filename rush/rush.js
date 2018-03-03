@@ -145,7 +145,15 @@ var current ={
     },
 };
 
-var score = 0
+var totalCookie = document.cookie.split("=");
+var scoresCookie = totalCookie[1];
+var scores = scoresCookie.split(",");
+
+for(var e=0; e<scores.length; e++){
+    scores[e] = parseInt(scores[e])
+}
+
+score = 0
 
 var backTable = [];
 for (var x = 0; x < 20; x++){
@@ -218,8 +226,9 @@ function drop() {
     fill()
     if(backTable[0][6] == 1 || backTable[0][5] == 1 || backTable[0][7] == 1){
         alert("GAME OVER")
+        sortScores()
         clearInterval(interval)
-        //window.open("index.html","_self")
+        window.open("scores.html","_self")
     }
     if(current.position.y - checkBottom() == 17){
         collision()
@@ -245,12 +254,33 @@ function drop() {
 }
 
 
+
+function sortScores() {
+    scores.push(score)
+    do {
+        var swap = false;
+        for(var x = 0; x < scores.length-1; x++) {
+            if (scores[x] > scores[x+1]) {
+                var temp = scores[x];
+                scores[x] = scores[x+1];
+                scores[x+1] = temp;
+                swap = true;
+            }
+        }
+    }
+    while(swap);
+    scores.shift()
+    console.log(scores)
+    document.cookie="scores=" + scores + "; expires=Thu, 12 Mar 2020 12:00:00 GMT"
+
+}
+
 function collision() {
     drawBack(current.shape, current.position.x, current.position.y, backTable);
     current.position.y = -2
     current.position.x = 5
     var rand = Math.floor(Math.random()*6);
-    console.log(n)
+    //console.log(n)
     n = [rand*4]
     current.shape = shapes[n]
     current.colour = colours[rand]
@@ -281,8 +311,6 @@ function maxwidth(shape){
     var count = 0
     while (last == false && count < (shape.length -1)){
         for(var row = 0; row < (shape.length - checkBottom()); row++){
-
-
             if(shape[row][shape.length -1 ] == 1){ //use - 1, i know the array will always be a square
                 last = true
                 return(shape.length -1)

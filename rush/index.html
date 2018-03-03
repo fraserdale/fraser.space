@@ -8,7 +8,6 @@
             font-size: 2em;
             text-align: center;
             color: white;
-            transition: opacity .5s ease ;
         }
         .mid {
             width: 250px;
@@ -19,7 +18,7 @@
             margin-left: -125px;
             margin-top: -125px;
             border: solid 1px white;
-            transition: opacity 1s ease ;
+            transition: opacity .5s ease ;
             cursor: pointer;
         }
        
@@ -27,7 +26,7 @@
             margin:0;
             padding:0;
 
-            transition: all 1s ease ;
+            transition: all .5s ease ;
 
         }
         .middlePage{
@@ -49,7 +48,7 @@
             text-align:center;
 
             position: fixed;
-            transition: all 5s ease ;
+            transition: all .5s ease ;
         }
     </style>
 
@@ -81,7 +80,7 @@
        },500);
         setTimeout(function () {
             window.location.href = "game.html"
-        }, 500)
+        }, 1000)
     }
     function rules() {
         document.querySelector("body").classList.add("hide");
