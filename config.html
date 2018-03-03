@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mesh config creator</title>
+    <style>
+        *{
+            font-family: "Work Sans","HelveticaNeue","Helvetica Neue",sans-serif;
+        }
+        p{
+            margin:0;
+        }
+        body{
+            width:100%;
+            margin:0;
+        }
+        .left{
+            margin-left: 10px;
+            width: 35%;
+            float: left;
+        }
+        .left div{
+            padding:5px;
+        }
+        .right{
+            margin-right: 10px;
+            float: left;
+
+        }
+    </style>
+</head>
+<body>
+<p style="position: absolute; margin-left: 10px; padding: 10px; background-color: #280e4d;"><a href="mesh.html" style="text-decoration: none; color: white; font-weight: bold;"> TASK CREATOR</a></p>
+<h1 align="center">
+    Mesh config creator
+</h1>
+<h3 align="center">
+    Take the output below paste it ALL into config.json
+</h3>
+<div class="left">
+    <div>
+        <label for="email">Email</label>
+        <input id="email"><br>
+    </div>
+    <div>
+        <label for="key">Key</label>
+        <input id="key"><br>
+    </div>
+    <div>
+        <label for="atcRetry">Retry on failed checkout</label>
+        <select id="atcRetry">
+            <option value=true>yes</option>
+            <option value=false>no</option>
+        </select>
+    </div>
+    <div>
+        <label for="retryTime">Checkout retry time (ms)</label>
+        <input id="retryTime" value="500"><br>
+    </div>
+    <div>
+        <label for="loginRetry">Retry on failed login</label>
+        <select id="loginRetry">
+            <option value=true>yes</option>
+            <option value=false>no</option>
+        </select>
+    </div>
+    <div>
+        <label for="loginTime">Loging retry time (ms)</label>
+        <input id="loginTime" value="500"><br>
+    </div>
+    <button onclick="output()">OUTPUT</button>
+</div>
+
+</div>
+<div class="right">
+    <textarea id="JSONout" style="width: 500px;height: 480px"></textarea>
+    <p id="test"></p>
+</div>
+
+
+
+</body>
+<script>
+    counter = 0;
+    start = '{\r';
+    end = '\r}';
+    function output() {
+        conf = '{\r    "user": {' +
+            '\r        "email": "' + document.getElementById('email').value + '",' +
+            '\r        "key": "' + document.getElementById('key').value + '"' +
+            '\r    },' +
+            '\r    "atcRetry": {' +
+            '\r        "enabled": ' + document.getElementById('atcRetry').value + ',' +
+            '\r        "retryTime": "' + document.getElementById('retryTime').value + '"' +
+            '\r    },' +
+            '\r    "loginRetry": {' +
+            '\r        "enabled": ' + document.getElementById('loginRetry').value + ',' +
+            '\r        "retryTime": "' + document.getElementById('loginTime').value + '"' +
+            '\r    }\r}';
+        document.getElementById('JSONout').value = conf
+
+    }
+</script>
+</html>
