@@ -73,6 +73,11 @@
 </body>
 
 <script>
+    window.onload = function() {
+        if (document.cookie == ""){
+            document.cookie="scores= 0,0,0,0,0; expires=Thu, 12 Mar 2020 12:00:00 GMT"
+        }
+    };
     function start() {
        document.querySelector(".mid").classList.add("hide");
        setTimeout(function () {
@@ -90,7 +95,7 @@
         },1000)
     }
     function highscores() {
-        document.querySelector("body").classList.add("hide");
+        document.querySelector(".mid").classList.add("hide");
         setTimeout(function () {
             window.location = "scores.html";
             document.querySelector("body").classList.remove("hide")

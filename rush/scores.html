@@ -88,7 +88,7 @@
         var totalCookie = document.cookie.split("=");
         var scoresCookie = totalCookie[1];
         var scores = scoresCookie.split(",");
-        var len = (scores.length) -1;
+        var len = (scores.length) - 1;
         console.log(len);
         document.getElementById('score1').innerHTML = "1 | " + scores[len];
         document.getElementById('score2').innerHTML = "2 | " + scores[len - 1];
