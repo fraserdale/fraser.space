@@ -471,7 +471,7 @@ function checkRotate(){
             console.log("row/index" + row + " , " + index)
             console.log("next - " + nextShape[row][index])
             console.log("back - " + backTable[row + current.position.y][index + current.position.x])
-            if(nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 ){
+            if(nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 || nextShape[row][0] == 1 && (index + current.position.x + 1) >= 13 ){
                 //draw that position to the backboard
                 console.log("CANT TURN")
                 turn = false
