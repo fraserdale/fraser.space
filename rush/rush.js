@@ -324,32 +324,44 @@ function sortScores() {
 
 //procedure called when there is a collision
 function collision() {
+    //add the current shape to the back table
     drawBack(current.shape, current.position.x, current.position.y, backTable);
+    //reset the position of the shape to the top
     current.position.y = -2
     current.position.x = 5
+    //randomly pick a number for new shape
     var rand = Math.floor(Math.random()*6);
-    //console.log(n)
+    //multiply number by 4 to hold collection of shapes when rotating
     n = [rand*4]
+    //set current shape to new random one
     current.shape = shapes[n]
+    //set shape colour to the one that corrosponds with the shape
     current.colour = colours[rand]
+    //reset rotation counter
     counter = 0
 }
 
-
+//function to check min width the shape is
 function minwidth(shape){
     var first = false
     var count = 0
+    //whilst first is not false and it hasnt finished looping through the shape
     while (first == false && count < (shape.length -1)){
+        //for each row in the shape
         for(var row = 0; row < shape.length; row++){
+            //check if the first index in each row is filled
             if(shape[row][0] == 1){
-                //console.log("First value filled.")
+                //if it is then set first to true
                 first = true
+                //return 0
                 return(0)
             }
         }
+        //increase counter by 1, increases each time loops through row
         count++
     }
     if (first == false){
+        //if finish looping through and first is true return 1
         return(1)
     }
 }
