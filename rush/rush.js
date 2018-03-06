@@ -299,24 +299,30 @@ function drop() {
                 cont.fillStyle = current.colour;
                 //console.log(row + posy + 1 + " " + (index + posx) )
                 if(backTable[row + posy + 1][index + posx] == 1)
+                    //call collision procedure
                     collision()
             }
         }
     }
+    //check if the tile is touching the bottom
     if(current.position.y - checkBottom() < 17){
+        //if its not then drop by 1
         current.position.y += 1;
     }
 
 }
 
-
-
 function sortScores() {
+    //add the current score the the scores array
     scores.push(score)
     do {
+        //default swap to false
         var swap = false;
+        //loop through the scores array
         for(var x = 0; x < scores.length-1; x++) {
+            //check if score is bigger than the next in the array
             if (scores[x] > scores[x+1]) {
+                //if it is then swap them, bubble them
                 var temp = scores[x];
                 scores[x] = scores[x+1];
                 scores[x+1] = temp;
@@ -324,33 +330,43 @@ function sortScores() {
             }
         }
     }
+    //do whilst swap is true
     while(swap);
+    //remove the smallest score from the array
     scores.shift()
-    console.log(scores)
+    //rewrite and save the cookie.
     document.cookie="scores=" + scores + "; expires=Thu, 12 Mar 2020 12:00:00 GMT"
-
 }
 
+//procedure that is called when a collision occures
 function collision() {
+    //draw the current tile to the back table
     drawBack(current.shape, current.position.x, current.position.y, backTable);
+    //reset the x and y position of the shape
     current.position.y = -2
     current.position.x = 5
+    //generate a random number between 0 and 6
     var rand = Math.floor(Math.random()*7);
-    //console.log(n)
+    //multiply the number by 4 as rotations are in groups of 4
     n = [rand*4]
+    //set new shape to random number
     current.shape = shapes[n]
+    //set colour to match the tile
     current.colour = colours[rand]
+    //reset rotation counter
     counter = 0
 }
 
-
+//fucntion to check if any values are filled in teh left hand collum of array
 function minwidth(shape){
+    //default first to false
     var first = false
     var count = 0
+    //whilst theres nothing found then keep looping
     while (first == false && count < (shape.length -1)){
         for(var row = 0; row < shape.length; row++){
+            //checks if first collum for that row is filled
             if(shape[row][0] == 1){
-                //console.log("First value filled.")
                 first = true
                 return(0)
             }
@@ -362,11 +378,15 @@ function minwidth(shape){
     }
 }
 
+//fucntion to check if any values are filled in teh rightt hand collum of array
 function maxwidth(shape){
+    //default first to false
     var last = false
     var count = 0
+    //whilst theres nothing found in the last collumn then keep looping
     while (last == false && count < (shape.length -1)){
         for(var row = 0; row < (shape.length - checkBottom()); row++){
+            //checks if last collum for that row is filled
             if(shape[row][shape.length -1 ] == 1){ //use - 1, i know the array will always be a square
                 last = true
                 return(shape.length -1)
@@ -435,14 +455,20 @@ function checkLHS(){
     }
 }
 
+//check how many blank rows there are at the bottom
 function checkBottom(){
+    //initiallise 0
     total = 0
+    //loop through each element in the bottom row of the array
     for (var i = 0; i < current.shape.length; i++) {
+        //if there is anything then increase total to not equal 0
         total += current.shape[current.shape.length - 1][i]
     }
+    //id nothing in bottom row return value 1
     if (total == 0){
         return 1
     }
+    //otherwise return value 0, meaning bottom row is full
     else{
         return 0
     }
@@ -450,72 +476,81 @@ function checkBottom(){
 }
 
 function checkRotate(){
+    //to stop rotating before fully on canvas
     if(current.position.y <= 0){
         return false
     }
 
     //if it can rotate then return true, if it cant rotate return false
-    //shapes[(parseInt(n))]
-    console.log("-------------------------")
-    //nextShape = shapes[(parseInt(n)+1)]
+    //check current rotation and set next shape value
     if (counter < 3) {
         nextShape = shapes[(parseInt(n)+1)]
     } else {
         nextShape = shapes[(parseInt(n)-3)]
     }
+    //default turn to true
     turn = true
+    //loop through each row in the next rotation
     for(var row = 0; row < nextShape.length; row++){
         //for each collumn in that row
         for(var index = 0; index < nextShape.length; index++){
-            //if that location is filled (equals 1)
-            console.log("row/index" + row + " , " + index)
-            console.log("next - " + nextShape[row][index])
-            console.log("back - " + backTable[row + current.position.y][index + current.position.x])
+            //if that location is filled (equals 1) and also is filled on the back board. Or trying to rotate out left or right hand side
             if(nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 || nextShape[row][0] == 1 && (index + current.position.x + 1) >= 13 ){
-                //draw that position to the backboard
-                console.log("CANT TURN")
+                //return false, unable to rotate
                 turn = false
-            }else{
-                console.log("TURN")
-            }
         }
     }
+    //if able to turn then return true
     if(turn == true){
         return true
+    //otherwise return false
     }else{
         return false
     }
 }
 
-
+//if a key on the keyboard is pressed
 document.onkeypress = function(key) {
+    //if 'a' key is pressed
     if (key.keyCode == 97) {
+        //check if able to move left
         if (checkLHS()) {
+            //if able to move left, move left
             current.position.x -= 1;
         }
         ;
         fill();
     }
+    // if the 'd' key is pressed
     else if (key.keyCode == 100) {
+        //check if able to move right
         if (checkRHS()) {
+            //if able to move left, move right
             current.position.x += 1;
         }
         ;
         fill()
     }
+    //if 's' key is pressed
     else if (key.keyCode == 115) {
+        //drop the tile
         drop()
         fill();
     }
+    //if the 'w' key is pressed
     else if (key.keyCode == 119) {
+        //check if able to rotate
         if (checkRotate()){
+            //if able to rotate then increase rotation counter by one
             if (counter < 3) {
                 n++;
                 counter++
+            //if rotation counter is =3 then reset the rotation, go back to original rotation
             } else {
                 counter = 0;
                 n -= 3
             }
+            //set shape to new rotation
             current.shape = shapes[n]
             fill()
         }
