@@ -4,7 +4,7 @@ var cont = canvas.getContext('2d');
 //scale by 20x
 cont.scale(20, 20);
 //declare the colours that correspond with the appropriate shapes
-var colours = ['orange','yellow','red','lime','blue','purple']
+var colours = ['orange','yellow','red','lime','blue','purple','cyan']
 //declare the shapes and their rotations
 var shapes =[
     [
@@ -133,6 +133,27 @@ var shapes =[
         [0,1,1],
         [0,0,1]
     ],
+
+    [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+    ],
+    [
+        [0,0,0],
+        [1,1,1],
+        [0,0,0]
+    ],
+    [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+    ],
+    [
+        [0,0,0],
+        [1,1,1],
+        [0,0,0]
+    ]
 
 
 ];
@@ -278,14 +299,11 @@ function drop() {
                 cont.fillStyle = current.colour;
                 //console.log(row + posy + 1 + " " + (index + posx) )
                 if(backTable[row + posy + 1][index + posx] == 1)
-                    //call the collision procedure
                     collision()
             }
         }
     }
-    //if above bottom of the board
     if(current.position.y - checkBottom() < 17){
-        //increase by 1 on the y axis, drop down one 
         current.position.y += 1;
     }
 
@@ -294,74 +312,52 @@ function drop() {
 
 
 function sortScores() {
-    //push current score onto the scores array
     scores.push(score)
-    //do while loop for bubble sort
     do {
-        //set swap to false
         var swap = false;
-        //loop through the number of scores in the array
         for(var x = 0; x < scores.length-1; x++) {
-            //check if the score is bigger than the next in the array
             if (scores[x] > scores[x+1]) {
-                //standard swap algorithm.
                 var temp = scores[x];
                 scores[x] = scores[x+1];
                 scores[x+1] = temp;
-                //sets swap to true
                 swap = true;
             }
         }
     }
-    //do this whilst swap is true 
     while(swap);
-    //remove the lowest score from the scores array
     scores.shift()
-    //update the scores cookie with an expiry so far into the future that its not just a session cookie
+    console.log(scores)
     document.cookie="scores=" + scores + "; expires=Thu, 12 Mar 2020 12:00:00 GMT"
 
 }
 
-//procedure called when there is a collision
 function collision() {
-    //add the current shape to the back table
     drawBack(current.shape, current.position.x, current.position.y, backTable);
-    //reset the position of the shape to the top
     current.position.y = -2
     current.position.x = 5
-    //randomly pick a number for new shape
-    var rand = Math.floor(Math.random()*6);
-    //multiply number by 4 to hold collection of shapes when rotating
+    var rand = Math.floor(Math.random()*7);
+    //console.log(n)
     n = [rand*4]
-    //set current shape to new random one
     current.shape = shapes[n]
-    //set shape colour to the one that corrosponds with the shape
     current.colour = colours[rand]
-    //reset rotation counter
     counter = 0
 }
 
-//function to check min width the shape is
+
 function minwidth(shape){
     var first = false
     var count = 0
-    //whilst first is not false and it hasnt finished looping through the shape
     while (first == false && count < (shape.length -1)){
-        //for each row in the shape
         for(var row = 0; row < shape.length; row++){
-            //check if the first index in each row is filled
             if(shape[row][0] == 1){
-                //if it is then set first to true
+                //console.log("First value filled.")
                 first = true
-                //return 0
                 return(0)
             }
         }
-        //increase counter by 1, increases each time loops through row
         count++
     }
     if (first == false){
-        //if finish looping through and first is true return 1
         return(1)
     }
 }
@@ -385,23 +381,57 @@ function maxwidth(shape){
 
 function checkRHS(){
     //(current.position.x + maxwidth(current.shape))
-    if((current.position.x >= 11 - maxwidth(current.shape)) || backTable[current.position.y + 2 - checkBottom()][current.position.x + 1 + maxwidth(current.shape)] == 1){
-
+    if(current.position.x >= 11 - maxwidth(current.shape)){
         //console.log("edge found")
         return false;
     }
-    else if ((current.position.x < 11 - maxwidth(current.shape)) ){
+    shape = current.shape
+    right = true
+    for(var row = 0; row < shape.length; row++){
+        //for each collumn in that row
+        for(var index = 0; index < shape.length; index++){
+            //if that location is filled (equals 1)
+            if(shape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x +1] == 1){
+                //draw that position to the backboard
+                console.log("CANT MOVE ")
+                right = false
+            }else{
+                console.log("MOVE")
+            }
+        }
+    }
+    if(right == true){
         return true
+    }else{
+        return false
     }
 }
 
 function checkLHS(){
     //console.log(current.position.x + minwidth(current.shape))
-    if ((current.position.x <= 0 - minwidth(current.shape))  || backTable[current.position.y + 2 - checkBottom()][current.position.x - 1 + minwidth(current.shape)] == 1){
-        return false
-    }else if((current.position.x > 0 - minwidth(current.shape)) ){
+    if((current.position.x <= 0 - minwidth(current.shape)) ){
         //console.log("edge found")
-        return true;
+        return false;
+    }
+    shape = current.shape
+    left = true
+    for(var row = 0; row < shape.length; row++){
+        //for each collumn in that row
+        for(var index = 0; index < shape.length; index++){
+            //if that location is filled (equals 1)
+            if(shape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x -1] == 1){
+                //draw that position to the backboard
+                console.log("CANT MOVE ")
+                left = false
+            }else{
+                console.log("MOVE")
+            }
+        }
+    }
+    if(left == true){
+        return true
+    }else{
+        return false
     }
 }
 
@@ -417,6 +447,44 @@ function checkBottom(){
         return 0
     }
 
+}
+
+function checkRotate(){
+    if(current.position.y <= 0){
+        return false
+    }
+
+    //if it can rotate then return true, if it cant rotate return false
+    //shapes[(parseInt(n))]
+    console.log("-------------------------")
+    //nextShape = shapes[(parseInt(n)+1)]
+    if (counter < 3) {
+        nextShape = shapes[(parseInt(n)+1)]
+    } else {
+        nextShape = shapes[(parseInt(n)-3)]
+    }
+    turn = true
+    for(var row = 0; row < nextShape.length; row++){
+        //for each collumn in that row
+        for(var index = 0; index < nextShape.length; index++){
+            //if that location is filled (equals 1)
+            console.log("row/index" + row + " , " + index)
+            console.log("next - " + nextShape[row][index])
+            console.log("back - " + backTable[row + current.position.y][index + current.position.x])
+            if(nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 ){
+                //draw that position to the backboard
+                console.log("CANT TURN")
+                turn = false
+            }else{
+                console.log("TURN")
+            }
+        }
+    }
+    if(turn == true){
+        return true
+    }else{
+        return false
+    }
 }
 
 
@@ -440,15 +508,17 @@ document.onkeypress = function(key) {
         fill();
     }
     else if (key.keyCode == 119) {
-        if (counter < 3) {
-            n++;
-            counter++
-        } else {
-            counter = 0;
-            n -= 3
+        if (checkRotate()){
+            if (counter < 3) {
+                n++;
+                counter++
+            } else {
+                counter = 0;
+                n -= 3
+            }
+            current.shape = shapes[n]
+            fill()
         }
-        current.shape = shapes[n]
-        fill()
     };
 };
 fill();
