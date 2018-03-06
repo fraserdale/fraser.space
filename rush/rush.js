@@ -493,11 +493,12 @@ function checkRotate(){
     //loop through each row in the next rotation
     for(var row = 0; row < nextShape.length; row++){
         //for each collumn in that row
-        for(var index = 0; index < nextShape.length; index++){
+        for(var index = 0; index < nextShape.length; index++) {
             //if that location is filled (equals 1) and also is filled on the back board. Or trying to rotate out left or right hand side
-            if(nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 || nextShape[row][0] == 1 && (index + current.position.x + 1) >= 13 ){
+            if (nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 || nextShape[row][0] == 1 && (index + current.position.x + 1) >= 13) {
                 //return false, unable to rotate
                 turn = false
+            }
         }
     }
     //if able to turn then return true
@@ -508,6 +509,7 @@ function checkRotate(){
         return false
     }
 }
+
 
 //if a key on the keyboard is pressed
 document.onkeypress = function(key) {
