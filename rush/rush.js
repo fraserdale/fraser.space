@@ -278,11 +278,14 @@ function drop() {
                 cont.fillStyle = current.colour;
                 //console.log(row + posy + 1 + " " + (index + posx) )
                 if(backTable[row + posy + 1][index + posx] == 1)
+                    //call the collision procedure
                     collision()
             }
         }
     }
+    //if above bottom of the board
     if(current.position.y - checkBottom() < 17){
+        //increase by 1 on the y axis, drop down one 
         current.position.y += 1;
     }
 
@@ -291,25 +294,35 @@ function drop() {
 
 
 function sortScores() {
+    //push current score onto the scores array
     scores.push(score)
+    //do while loop for bubble sort
     do {
+        //set swap to false
         var swap = false;
+        //loop through the number of scores in the array
         for(var x = 0; x < scores.length-1; x++) {
+            //check if the score is bigger than the next in the array
             if (scores[x] > scores[x+1]) {
+                //standard swap algorithm.
                 var temp = scores[x];
                 scores[x] = scores[x+1];
                 scores[x+1] = temp;
+                //sets swap to true
                 swap = true;
             }
         }
     }
+    //do this whilst swap is true 
     while(swap);
+    //remove the lowest score from the scores array
     scores.shift()
-    console.log(scores)
+    //update the scores cookie with an expiry so far into the future that its not just a session cookie
     document.cookie="scores=" + scores + "; expires=Thu, 12 Mar 2020 12:00:00 GMT"
 
 }
 
+//procedure called when there is a collision
 function collision() {
     drawBack(current.shape, current.position.x, current.position.y, backTable);
     current.position.y = -2
