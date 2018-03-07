@@ -4,7 +4,7 @@ var cont = canvas.getContext('2d');
 //scale by 20x
 cont.scale(20, 20);
 //declare the colours that correspond with the appropriate shapes
-var colours = ['orange','yellow','red','lime','blue','purple','cyan']
+var colours = ['orange','yellow','red','lime','blue','purple'/*,'cyan'*/]
 //declare the shapes and their rotations
 var shapes =[
     [
@@ -133,7 +133,7 @@ var shapes =[
         [0,1,1],
         [0,0,1]
     ],
-
+/*
     [
         [0,1,0],
         [0,1,0],
@@ -154,6 +154,7 @@ var shapes =[
         [1,1,1],
         [0,0,0]
     ]
+    */
 
 
 ];
@@ -346,7 +347,7 @@ function collision() {
     current.position.y = -2
     current.position.x = 5
     //generate a random number between 0 and 6
-    var rand = Math.floor(Math.random()*7);
+    var rand = Math.floor(Math.random()*6/*7*/);
     //multiply the number by 4 as rotations are in groups of 4
     n = [rand*4]
     //set new shape to random number
