@@ -302,6 +302,7 @@ function drop() {
                 if(backTable[row + posy + 1][index + posx] == 1)
                     //call collision procedure
                     collision()
+                    console.log("COLLISION")
             }
         }
     }
@@ -310,6 +311,7 @@ function drop() {
         //if its not then drop by 1
         current.position.y += 1;
     }
+    
 
 }
 
