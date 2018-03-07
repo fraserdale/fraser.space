@@ -273,7 +273,7 @@ var interval = setInterval(drop,1000);
 function drop() {
     fill()
     //checks if game should be over by checking the top row to see if filled
-    if(backTable[0][6] == 1 || backTable[0][5] == 1 || backTable[0][7] == 1){
+    if(backTable[0][6] == 1 || backTable[0][5] == 1 || backTable[0][7] == 1|| backTable[0][4] == 1 || backTable[0][3] == 1 || backTable[0][2] == 1 || backTable[0][8] == 1 || backTable[0][9] == 1 || backTable[0][10] == 1) {
         //if game is over then sort the scores
         sortScores()
         //stop the drop clock
