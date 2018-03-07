@@ -4,7 +4,7 @@ var cont = canvas.getContext('2d');
 //scale by 20x
 cont.scale(20, 20);
 //declare the colours that correspond with the appropriate shapes
-var colours = ['orange','yellow','red','lime','blue','purple'/*,'cyan'*/]
+var colours = ['orange','yellow','red','lime','blue','purple','cyan']
 //declare the shapes and their rotations
 var shapes =[
     [
@@ -115,9 +115,9 @@ var shapes =[
 
     [
         [0,0,0],
-            [0,1,0],
-            [1,1,1]
-        ],
+        [0,1,0],
+        [1,1,1]
+    ],
     [
         [1,0,0],
         [1,1,0],
@@ -133,12 +133,6 @@ var shapes =[
         [0,1,1],
         [0,0,1]
     ],
-/*
-    [
-        [0,1,0],
-        [0,1,0],
-        [0,1,0]
-    ],
     [
         [0,0,0],
         [1,1,1],
@@ -153,10 +147,12 @@ var shapes =[
         [0,0,0],
         [1,1,1],
         [0,0,0]
+    ],
+    [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
     ]
-    */
-
-
 ];
 
 //set rotation counter and shape counter to 0
@@ -300,9 +296,9 @@ function drop() {
                 cont.fillStyle = current.colour;
                 //console.log(row + posy + 1 + " " + (index + posx) )
                 if(backTable[row + posy + 1][index + posx] == 1)
-                    //call collision procedure
+                //call collision procedure
                     collision()
-                    console.log("COLLISION")
+                console.log("COLLISION")
             }
         }
     }
@@ -311,7 +307,7 @@ function drop() {
         //if its not then drop by 1
         current.position.y += 1;
     }
-    
+
 
 }
 
@@ -333,7 +329,7 @@ function sortScores() {
             }
         }
     }
-    //do whilst swap is true
+        //do whilst swap is true
     while(swap);
     //remove the smallest score from the array
     scores.shift()
@@ -349,7 +345,7 @@ function collision() {
     current.position.y = -2
     current.position.x = 5
     //generate a random number between 0 and 6
-    var rand = Math.floor(Math.random()*6/*7*/);
+    var rand = Math.floor(Math.random()*7);
     //multiply the number by 4 as rotations are in groups of 4
     n = [rand*4]
     //set new shape to random number
@@ -507,7 +503,7 @@ function checkRotate(){
     //if able to turn then return true
     if(turn == true){
         return true
-    //otherwise return false
+        //otherwise return false
     }else{
         return false
     }
@@ -550,7 +546,7 @@ document.onkeypress = function(key) {
             if (counter < 3) {
                 n++;
                 counter++
-            //if rotation counter is =3 then reset the rotation, go back to original rotation
+                //if rotation counter is =3 then reset the rotation, go back to original rotation
             } else {
                 counter = 0;
                 n -= 3
