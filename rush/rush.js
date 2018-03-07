@@ -169,7 +169,7 @@ var current ={
     colour: colours[0],
     position: {
         x: 5,
-        y: -2
+        y: -1
     },
 };
 
@@ -344,7 +344,7 @@ function collision() {
     //draw the current tile to the back table
     drawBack(current.shape, current.position.x, current.position.y, backTable);
     //reset the x and y position of the shape
-    current.position.y = -2
+    current.position.y = -1
     current.position.x = 5
     //generate a random number between 0 and 6
     var rand = Math.floor(Math.random()*6/*7*/);
