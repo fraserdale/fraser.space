@@ -4,7 +4,7 @@ var cont = canvas.getContext('2d');
 //scale by 20x
 cont.scale(20, 20);
 //declare the colours that correspond with the appropriate shapes
-var colours = ['orange','yellow','red','lime','blue','purple','cyan']
+var colours = ['orange','yellow','red','lime','blue','purple','cyan','orange']
 //declare the shapes and their rotations
 var shapes =[
     [
@@ -112,7 +112,6 @@ var shapes =[
         [0,1,1]
     ],
 
-
     [
         [0,0,0],
         [0,1,0],
@@ -133,6 +132,7 @@ var shapes =[
         [0,1,1],
         [0,0,1]
     ],
+
     [
         [0,0,0],
         [1,1,1],
@@ -215,7 +215,7 @@ function draw(shape, posx, posy) {
         //for each collumn in that row
         for(var index = 0; index < shape.length; index++){
             //if that location is filled (equals one)
-            if(shape[row][index] == 1){
+            if(shape[row][index] !== 0){
                 //on the canvas content draw a 1x1 square of the current colour
                 cont.fillStyle = current.colour;
                 cont.fillRect(index + posx ,row + posy,1,1)
@@ -231,9 +231,15 @@ function drawBack(shape, posx, posy, backTable){
         //for each collumn in that row
         for(var index = 0; index < shape.length; index++){
             //if that location is filled (equals 1)
-            if(shape[row][index] == 1){
+            if(shape[row][index] !== 0){
                 //draw that position to the backboard
-                backTable[row + posy][index + posx] = 1
+                console.log(n)
+                if(Math.floor(n/4) == 0){
+                    colourCode = 7
+                }else{
+                    colourCode = Math.floor(n/4)
+                }
+                backTable[row + posy][index + posx] = colourCode
                 //increase the score by 1
                 score += 1
             }
@@ -249,9 +255,9 @@ function drawGrid(backTable) {
         //for each item in the row
         for (var x = 0; x < 12; x++) {
             //if in that location onthe back table = 1
-            if (backTable[y][x] == 1) {
+            if (backTable[y][x] !== 0) {
                 //on the canvas content draw a 1x1 square of the current colour
-                cont.fillStyle = current.colour;
+                cont.fillStyle = colours[backTable[y][x]];
                 cont.fillRect(x,y, 1, 1)
             }
 
@@ -269,7 +275,7 @@ var interval = setInterval(drop,1000);
 function drop() {
     fill()
     //checks if game should be over by checking the top row to see if filled
-    if(backTable[0][6] == 1 || backTable[0][5] == 1 || backTable[0][7] == 1|| backTable[0][4] == 1 || backTable[0][3] == 1 || backTable[0][2] == 1 || backTable[0][8] == 1 || backTable[0][9] == 1 || backTable[0][10] == 1) {
+    if(backTable[0][6] !== 0 || backTable[0][5] !== 0 || backTable[0][7] !== 0|| backTable[0][4] !== 0 || backTable[0][3] !== 0 || backTable[0][2] !== 0 || backTable[0][8] !== 0 || backTable[0][9] !== 0 || backTable[0][10] !== 0) {
         //if game is over then sort the scores
         sortScores()
         //stop the drop clock
@@ -291,11 +297,11 @@ function drop() {
         //loop through each element in the row
         for(var index = 0; index < shape.length; index++){
             //if that element equals 1
-            if(shape[row][index] == 1){
+            if(shape[row][index] !== 0){
 
                 cont.fillStyle = current.colour;
                 //console.log(row + posy + 1 + " " + (index + posx) )
-                if(backTable[row + posy + 1][index + posx] == 1)
+                if(backTable[row + posy + 1][index + posx] !== 0)
                 //call collision procedure
                     collision()
                 console.log("COLLISION")
@@ -365,7 +371,7 @@ function minwidth(shape){
     while (first == false && count < (shape.length -1)){
         for(var row = 0; row < shape.length; row++){
             //checks if first collum for that row is filled
-            if(shape[row][0] == 1){
+            if(shape[row][0] !== 0){
                 first = true
                 return(0)
             }
@@ -386,7 +392,7 @@ function maxwidth(shape){
     while (last == false && count < (shape.length -1)){
         for(var row = 0; row < (shape.length - checkBottom()); row++){
             //checks if last collum for that row is filled
-            if(shape[row][shape.length -1 ] == 1){ //use - 1, i know the array will always be a square
+            if(shape[row][shape.length -1 ] !== 0){ //use - 1, i know the array will always be a square
                 last = true
                 return(shape.length -1)
             }
@@ -410,7 +416,7 @@ function checkRHS(){
         //for each collumn in that row
         for(var index = 0; index < shape.length; index++){
             //if that location is filled (equals 1)
-            if(shape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x +1] == 1){
+            if(shape[row][index] !== 0 && backTable[row + current.position.y][index + current.position.x +1] !== 0){
                 //draw that position to the backboard
                 console.log("CANT MOVE ")
                 right = false
@@ -438,7 +444,7 @@ function checkLHS(){
         //for each collumn in that row
         for(var index = 0; index < shape.length; index++){
             //if that location is filled (equals 1)
-            if(shape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x -1] == 1){
+            if(shape[row][index] !== 0 && backTable[row + current.position.y][index + current.position.x -1] !== 0){
                 //draw that position to the backboard
                 console.log("CANT MOVE ")
                 left = false
@@ -476,10 +482,6 @@ function checkBottom(){
 
 function checkRotate(){
     //to stop rotating before fully on canvas
-    if(current.position.y <= 0){
-        return false
-    }
-
     //if it can rotate then return true, if it cant rotate return false
     //check current rotation and set next shape value
     if (counter < 3) {
@@ -494,7 +496,7 @@ function checkRotate(){
         //for each collumn in that row
         for(var index = 0; index < nextShape.length; index++) {
             //if that location is filled (equals 1) and also is filled on the back board. Or trying to rotate out left or right hand side
-            if (nextShape[row][index] == 1 && backTable[row + current.position.y][index + current.position.x] == 1 || nextShape[row][0] == 1 && (index + current.position.x - 1) <= -2 || nextShape[row][0] == 1 && (index + current.position.x + 1) >= 13) {
+            if (nextShape[row][index] !== 0 && backTable[row + current.position.y][index + current.position.x] !== 0 || nextShape[row][0] !== 0 && (index + current.position.x - 1) <= -2 || nextShape[row][0] !== 0 && (index + current.position.x + 1) >= 13 || nextShape[row][index] !== 0 && (row+current.position.y < 0)) {
                 //return false, unable to rotate
                 turn = false
             }
