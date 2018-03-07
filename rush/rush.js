@@ -8,9 +8,9 @@ var colours = ['orange','yellow','red','lime','blue','purple'/*,'cyan'*/]
 //declare the shapes and their rotations
 var shapes =[
     [
+        [0,0,0],
         [0,0,1],
-        [1,1,1],
-        [0,0,0]
+        [1,1,1]
     ],
     [
         [1,0,0],
@@ -29,30 +29,30 @@ var shapes =[
     ],
 
     [
+        [0,0,0],
         [0,1,1],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
     [
+        [0,0,0],
         [0,1,1],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
     [
+        [0,0,0],
         [0,1,1],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
     [
+        [0,0,0],
         [0,1,1],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
 
     [
+        [0,0,0],
         [1,1,0],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
     [
         [0,0,1],
@@ -60,9 +60,9 @@ var shapes =[
         [0,1,0]
     ],
     [
+        [0,0,0],
         [1,1,0],
-        [0,1,1],
-        [0,0,0]
+        [0,1,1]
     ],
     [
         [0,0,1],
@@ -71,19 +71,19 @@ var shapes =[
     ],
 
     [
+        [0,0,0],
         [0,1,1],
-        [1,1,0],
-        [0,0,0]
+        [1,1,0]
     ],
     [
         [1,0,0],
         [1,1,0],
         [0,1,0]
     ],
-   [
+    [
+        [0,0,0],
         [0,1,1],
-        [1,1,0],
-        [0,0,0]
+        [1,1,0]
     ],
     [
         [1,0,0],
@@ -92,9 +92,9 @@ var shapes =[
     ],
 
     [
+        [0,0,0],
         [1,0,0],
-        [1,1,1],
-        [0,0,0]
+        [1,1,1]
     ],
     [
         [1,1,0],
@@ -115,9 +115,9 @@ var shapes =[
 
     [
         [0,0,0],
-        [0,1,0],
-        [1,1,1]
-    ],
+            [0,1,0],
+            [1,1,1]
+        ],
     [
         [1,0,0],
         [1,1,0],
@@ -132,9 +132,9 @@ var shapes =[
         [0,0,1],
         [0,1,1],
         [0,0,1]
-    ]
+    ],
 /*
-    ,[
+    [
         [0,1,0],
         [0,1,0],
         [0,1,0]
@@ -169,7 +169,7 @@ var current ={
     colour: colours[0],
     position: {
         x: 5,
-        y: -1
+        y: -2
     },
 };
 
@@ -344,7 +344,7 @@ function collision() {
     //draw the current tile to the back table
     drawBack(current.shape, current.position.x, current.position.y, backTable);
     //reset the x and y position of the shape
-    current.position.y = -1
+    current.position.y = -2
     current.position.x = 5
     //generate a random number between 0 and 6
     var rand = Math.floor(Math.random()*6/*7*/);
@@ -560,5 +560,4 @@ document.onkeypress = function(key) {
     };
 };
 fill();
-
 
