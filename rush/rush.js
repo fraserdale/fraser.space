@@ -282,7 +282,19 @@ function drop() {
         clearInterval(interval)
         console.log("Game over")
         //redirect to the scores page
-        window.open("scores.html","_self")
+        alert("game over")
+        document.getElementById('rush').style.opacity = 0
+        document.getElementById('side').style.opacity = 0
+        document.getElementById('title').classList.add('hide')
+        setTimeout(function () {
+            document.getElementById('title').classList.remove('hide')
+            document.getElementById('title').innerText = "Score - " + score;
+        },1000);
+
+        setTimeout(function () {
+            window.open("scores.html","_self")
+        },3000);
+
     }
     //checks if tile is on the bottom row
     if(current.position.y - checkBottom() == 17){
@@ -405,6 +417,7 @@ function maxwidth(shape){
 }
 
 function checkRHS(){
+    document.getElementById('rush').classList.remove('redborder')
     //(current.position.x + maxwidth(current.shape))
     if(current.position.x >= 11 - maxwidth(current.shape)){
         //console.log("edge found")
@@ -433,6 +446,7 @@ function checkRHS(){
 }
 
 function checkLHS(){
+    document.getElementById('rush').classList.remove('redborder')
     //console.log(current.position.x + minwidth(current.shape))
     if((current.position.x <= 0 - minwidth(current.shape)) ){
         //console.log("edge found")
@@ -504,9 +518,11 @@ function checkRotate(){
     }
     //if able to turn then return true
     if(turn == true){
+        document.getElementById('rush').classList.remove('redborder')
         return true
         //otherwise return false
     }else{
+        document.getElementById('rush').classList.add('redborder')
         return false
     }
 }
@@ -536,6 +552,7 @@ document.onkeypress = function(key) {
     }
     //if 's' key is pressed
     else if (key.keyCode == 115) {
+        document.getElementById('rush').classList.remove('redborder')
         //drop the tile
         drop()
         fill();

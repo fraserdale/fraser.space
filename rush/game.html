@@ -17,12 +17,14 @@
         }
         .hideBody{
             opacity: 0;
+            transition: all .5s ease ;
         }
 		h1{
 			margin:0;
 			padding:0;
 			vertical-align:middle;
 			display:table-cell;
+            transition: all .5s ease ;
 		}
 		#section1 {
 			width:100%;
@@ -50,13 +52,22 @@
         a{
             color: #FFF;
             text-decoration: none;
+            transition: all .5s ease ;
+        }
+        .hide{
+            opacity: 0;
+            transition: all .5s ease ;
+
+        }
+        .redborder{
+            border: solid .2em red;
         }
 
     </style>
 </head>
 <body class="hideBody">
 <div style="z-index: 0" id="section1">
-    <h1><a href="index.html">RUSH</a></h1>
+    <h1><a id="title" href="index.html">RUSH</a></h1><br>
 </div>
 
 <div id="side" class="side">

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: #232323;
+            font-family: Helvetica;
+            font-size: 2em;
+            text-align: center;
+            color: white;
+        }
+        .mid {
+            width: 650px;
+            height: 450px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -325px;
+            margin-top: -225px;
+            border: solid 1px white;
+            transition: opacity .5s ease ;
+            cursor: default;
+        }
+
+        h1{
+            margin:0;
+            padding:0;
+            transition: all .5s ease ;
+
+        }
+        .middlePage{
+            padding-top: 45vh;
+            opacity: 0;
+        }
+        .middleText{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .hide{
+            opacity: 0;
+        }
+        .section1 {
+            width:100%;
+            min-height:100%;
+            text-align:center;
+
+            position: fixed;
+            transition: all .5s ease ;
+        }
+        span{
+            color: lime;
+
+        }
+        a{
+            color: #FFF;
+            text-decoration: none;
+            transition: all .5s ease ;
+        }
+    </style>
+
+    <title>Rush</title>
+</head>
+<body>
+<div id="heading" class="section1">
+    <h1 align="center" class="" id="title"><a href="index.html">RUSH</a></h1>
+</div>
+
+<div class="mid">
+    <div style="height: 25%" class="middleText">
+        <p>Use the <span >A</span> and <span >D</span> keys to move left and right</p>
+    </div>
+    <div style="height: 25%" class="middleText">
+        <p>Use the <span >S</span> key to move down</p>
+    </div>
+    <div style="height: 25%" class="middleText">
+        <p>Use the <span >W</span> key to rotate the key. The border of the game area will go red if you are trying to make an invalid move</p>
+    </div>
+    <div style="height: 25%" class="middleText">
+        <p>The aim is to score as many points before you reach the top of the board.</p>
+    </div>
+</div>
+</body>
+
+<script>
+    window.onload = function() {
+        if (document.cookie == ""){
+            document.cookie="scores= 0,0,0,0,0; expires=Thu, 12 Mar 2020 12:00:00 GMT"
+        }
+    };
+</script>
+
+</html>

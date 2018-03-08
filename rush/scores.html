@@ -53,11 +53,15 @@
             color: #FFF;
             text-decoration: none;
         }
+        .hideBody{
+            opacity: 0;
+            transition: all .5s ease ;
+        }
     </style>
 
     <title>Rush</title>
 </head>
-<body>
+<body class="hideBody">
 <div id="heading" class="section1">
     <a href="index.html"> <h1 align="center" class="" id="title">RUSH</h1></a>
 </div>
@@ -84,6 +88,7 @@
 
 <script>
     window.onload = function() {
+        document.querySelector(".hideBody").classList.remove("hideBody");
         console.log(document.cookie); // 4th
         var totalCookie = document.cookie.split("=");
         var scoresCookie = totalCookie[1];
