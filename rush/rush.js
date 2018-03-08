@@ -275,23 +275,24 @@ var interval = setInterval(drop,1000);
 function drop() {
     fill()
     //checks if game should be over by checking the top row to see if filled
-    if(backTable[0][6] !== 0 || backTable[0][5] !== 0 || backTable[0][7] !== 0|| backTable[0][4] !== 0 || backTable[0][3] !== 0 || backTable[0][2] !== 0 || backTable[0][8] !== 0 || backTable[0][9] !== 0 || backTable[0][10] !== 0) {
+    if(backTable[1][6] !== 0 || backTable[1][5] !== 0 || backTable[1][7] !== 0|| backTable[0][4] !== 0 || backTable[0][3] !== 0 || backTable[0][2] !== 0 || backTable[0][8] !== 0 || backTable[0][9] !== 0 || backTable[0][10] !== 0) {
         //if game is over then sort the scores
         sortScores()
         //stop the drop clock
         clearInterval(interval)
         console.log("Game over")
-        //redirect to the scores page
-        alert("game over")
+        //redirect to the scores page with some transitions
         document.getElementById('rush').style.opacity = 0
         document.getElementById('side').style.opacity = 0
         document.getElementById('title').classList.add('hide')
         setTimeout(function () {
             document.getElementById('title').classList.remove('hide')
+            //flash score to player
             document.getElementById('title').innerText = "Score - " + score;
         },1000);
 
         setTimeout(function () {
+            //open scores page
             window.open("scores.html","_self")
         },3000);
 
