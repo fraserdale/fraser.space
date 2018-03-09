@@ -285,6 +285,7 @@ function drop() {
         document.getElementById('rush').style.opacity = 0
         document.getElementById('side').style.opacity = 0
         document.getElementById('title').classList.add('hide')
+        clearInterval(interval)
         setTimeout(function () {
             document.getElementById('title').classList.remove('hide')
             //flash score to player
