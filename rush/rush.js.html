@@ -1,0 +1,612 @@
+<html>
+<head>
+<title>rush.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+rush.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">//declare canvas and link with page</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">canvas = document.getElementById(</span><span class="s3">'rush'</span><span class="s1">); 
+</span><span class="s2">var </span><span class="s1">cont = canvas.getContext(</span><span class="s3">'2d'</span><span class="s1">); 
+</span><span class="s0">//scale by 20x</span><span class="s1"> 
+cont.scale(</span><span class="s4">20</span><span class="s1">, </span><span class="s4">20</span><span class="s1">); 
+</span><span class="s0">//declare the colours that correspond with the appropriate shapes</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">colours = [</span><span class="s3">'orange'</span><span class="s1">,</span><span class="s3">'yellow'</span><span class="s1">,</span><span class="s3">'red'</span><span class="s1">,</span><span class="s3">'lime'</span><span class="s1">,</span><span class="s3">'blue'</span><span class="s1">,</span><span class="s3">'purple'</span><span class="s1">,</span><span class="s3">'cyan'</span><span class="s1">,</span><span class="s3">'orange'</span><span class="s1">] 
+</span><span class="s0">//declare the shapes and their rotations</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">shapes =[ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">] 
+    ], 
+ 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ], 
+    [ 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">], 
+        [</span><span class="s4">0</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">0</span><span class="s1">] 
+    ] 
+]; 
+ 
+</span><span class="s0">//set rotation counter and shape counter to 0</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">n = </span><span class="s4">0</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">counter = </span><span class="s4">0</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">over = </span><span class="s2">false</span><span class="s1"> 
+ 
+</span><span class="s0">//declare the first shape that drops and its colour and its position x and y positions</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">current ={ 
+    shape: shapes[n], 
+    colour: colours[</span><span class="s4">0</span><span class="s1">], 
+    position: { 
+        x: </span><span class="s4">5</span><span class="s1">, 
+        y: -</span><span class="s4">2</span><span class="s1"> 
+    }, 
+}; 
+ 
+</span><span class="s0">//reads in stored cookie and splits from the = sign, this seperates the name of the cookie and the data</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">totalCookie = document.cookie.split(</span><span class="s3">&quot;=&quot;</span><span class="s1">); 
+</span><span class="s2">var </span><span class="s1">scoresCookie = totalCookie[</span><span class="s4">1</span><span class="s1">]; 
+</span><span class="s0">//splits the stored scores cookie into an array</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">scores = scoresCookie.split(</span><span class="s3">&quot;,&quot;</span><span class="s1">); 
+</span><span class="s0">//turns the scores into integers from strings</span><span class="s1"> 
+</span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">e=</span><span class="s4">0</span><span class="s1">; e&lt;scores.length; e++){ 
+    scores[e] = parseInt(scores[e]) 
+} 
+ 
+</span><span class="s0">//initialises score as 0</span><span class="s1"> 
+score = </span><span class="s4">0</span><span class="s1"> 
+ 
+</span><span class="s0">//creates the 'backTable' used to store all previous moves</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">backTable = []; 
+</span><span class="s0">//loops through each row</span><span class="s1"> 
+</span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">x = </span><span class="s4">0</span><span class="s1">; x &lt; </span><span class="s4">20</span><span class="s1">; x++){ 
+    </span><span class="s2">var </span><span class="s1">inner = []; 
+    </span><span class="s0">//loops through each collumn</span><span class="s1"> 
+    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">y = </span><span class="s4">0</span><span class="s1">; y &lt; </span><span class="s4">12</span><span class="s1">; y++){ 
+        </span><span class="s0">//fills each cell with a 0, a blank canvas</span><span class="s1"> 
+        inner[y] = </span><span class="s4">0</span><span class="s1">; 
+    } 
+    backTable[x] = inner; 
+} 
+ 
+</span><span class="s0">//function to fill the canvas</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">fill() { 
+    </span><span class="s0">//colours the canvas content to match rest of the screen</span><span class="s1"> 
+    cont.fillStyle = </span><span class="s3">'#232323'</span><span class="s1">; 
+    </span><span class="s0">//sets canvas content to same size as canvas</span><span class="s1"> 
+    cont.fillRect(</span><span class="s4">0</span><span class="s1">,</span><span class="s4">0</span><span class="s1">,canvas.width,canvas.height); 
+    </span><span class="s0">//draws the current tile</span><span class="s1"> 
+    draw(current.shape, current.position.x, current.position.y); 
+    </span><span class="s0">//draws the back table, all previously placed tiles</span><span class="s1"> 
+    drawGrid(backTable) 
+ 
+} 
+ 
+ 
+</span><span class="s2">function </span><span class="s1">draw(shape, posx, posy) { 
+    </span><span class="s0">//for each row of the shape</span><span class="s1"> 
+    </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+        </span><span class="s0">//for each collumn in that row</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; shape.length; index++){ 
+            </span><span class="s0">//if that location is filled (equals one)</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][index] !== </span><span class="s4">0</span><span class="s1">){ 
+                </span><span class="s0">//on the canvas content draw a 1x1 square of the current colour</span><span class="s1"> 
+                cont.fillStyle = current.colour; 
+                cont.fillRect(index + posx ,row + posy,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">) 
+            } 
+        } 
+    } 
+} 
+ 
+</span><span class="s0">//function to draw a shape to the back table</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">drawBack(shape, posx, posy, backTable){ 
+    </span><span class="s0">//for each row of the shape</span><span class="s1"> 
+    </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+        </span><span class="s0">//for each collumn in that row</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; shape.length; index++){ 
+            </span><span class="s0">//if that location is filled (equals 1)</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][index] !== </span><span class="s4">0</span><span class="s1">){ 
+                </span><span class="s0">//draw that position to the backboard</span><span class="s1"> 
+                console.log(n) 
+                </span><span class="s2">if</span><span class="s1">(Math.floor(n/</span><span class="s4">4</span><span class="s1">) == </span><span class="s4">0</span><span class="s1">){ 
+                    colourCode = </span><span class="s4">7</span><span class="s1"> 
+                }</span><span class="s2">else</span><span class="s1">{ 
+                    colourCode = Math.floor(n/</span><span class="s4">4</span><span class="s1">) 
+                } 
+                backTable[row + posy][index + posx] = colourCode 
+                </span><span class="s0">//increase the score by 1</span><span class="s1"> 
+                score += </span><span class="s4">1</span><span class="s1"> 
+            } 
+        } 
+    } 
+} 
+ 
+ 
+</span><span class="s0">//draws the entire back table</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">drawGrid(backTable) { 
+    </span><span class="s0">//for each row in the backtable</span><span class="s1"> 
+    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">y = </span><span class="s4">0</span><span class="s1">; y &lt; </span><span class="s4">20</span><span class="s1">; y++) { 
+        </span><span class="s0">//for each item in the row</span><span class="s1"> 
+        </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">x = </span><span class="s4">0</span><span class="s1">; x &lt; </span><span class="s4">12</span><span class="s1">; x++) { 
+            </span><span class="s0">//if in that location onthe back table = 1</span><span class="s1"> 
+            </span><span class="s2">if </span><span class="s1">(backTable[y][x] !== </span><span class="s4">0</span><span class="s1">) { 
+                </span><span class="s0">//on the canvas content draw a 1x1 square of the current colour</span><span class="s1"> 
+                cont.fillStyle = colours[backTable[y][x]]; 
+                cont.fillRect(x,y, </span><span class="s4">1</span><span class="s1">, </span><span class="s4">1</span><span class="s1">) 
+            } 
+ 
+        } 
+    } 
+    </span><span class="s0">//Fill the score in the side bar</span><span class="s1"> 
+    document.getElementById(</span><span class="s3">&quot;score&quot;</span><span class="s1">).innerHTML = </span><span class="s3">&quot;Score: &quot; </span><span class="s1">+ score 
+} 
+ 
+ 
+</span><span class="s0">//drop counter that ticks every 1000ms/ every second</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">interval = setInterval(drop,</span><span class="s4">1000</span><span class="s1">); 
+ 
+</span><span class="s0">//function to drop tile down</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">drop() { 
+ 
+    fill() 
+    </span><span class="s0">//checks if game should be over by checking the top row to see if filled</span><span class="s1"> 
+        </span><span class="s2">if</span><span class="s1">(backTable[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">6</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">5</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">7</span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">4</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">3</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">8</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">9</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">|| backTable[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">10</span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">) { 
+            over = </span><span class="s2">true</span><span class="s1"> 
+            </span><span class="s0">//if game is over then sort the scores</span><span class="s1"> 
+            </span><span class="s0">//stop the drop clock</span><span class="s1"> 
+            clearInterval(interval) 
+            sortScores() 
+            console.log(</span><span class="s3">&quot;Game over&quot;</span><span class="s1">) 
+            </span><span class="s0">//redirect to the scores page with some transitions</span><span class="s1"> 
+            document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).style.opacity = </span><span class="s4">0</span><span class="s1"> 
+            document.getElementById(</span><span class="s3">'side'</span><span class="s1">).style.opacity = </span><span class="s4">0</span><span class="s1"> 
+            document.getElementById(</span><span class="s3">'title'</span><span class="s1">).classList.add(</span><span class="s3">'hide'</span><span class="s1">) 
+            clearInterval(interval) 
+            setTimeout(</span><span class="s2">function </span><span class="s1">() { 
+                document.getElementById(</span><span class="s3">'title'</span><span class="s1">).classList.remove(</span><span class="s3">'hide'</span><span class="s1">) 
+                </span><span class="s0">//flash score to player</span><span class="s1"> 
+                document.getElementById(</span><span class="s3">'title'</span><span class="s1">).innerText = </span><span class="s3">&quot;Score - &quot; </span><span class="s1">+ score; 
+            },</span><span class="s4">1000</span><span class="s1">); 
+ 
+            setTimeout(</span><span class="s2">function </span><span class="s1">() { 
+                </span><span class="s0">//open scores page</span><span class="s1"> 
+                window.open(</span><span class="s3">&quot;scores.html&quot;</span><span class="s1">,</span><span class="s3">&quot;_self&quot;</span><span class="s1">) 
+            },</span><span class="s4">3000</span><span class="s1">); 
+ 
+        } 
+        </span><span class="s0">//checks if tile is on the bottom row</span><span class="s1"> 
+        </span><span class="s2">if</span><span class="s1">(current.position.y - checkBottom() == </span><span class="s4">17</span><span class="s1">){ 
+            </span><span class="s0">//if it is then call collision function</span><span class="s1"> 
+            collision() 
+        } 
+        shape = current.shape 
+        posy = current.position.y 
+        posx = current.position.x 
+        </span><span class="s0">//loop through each row in the shape</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+            </span><span class="s0">//loop through each element in the row</span><span class="s1"> 
+            </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; shape.length; index++){ 
+                </span><span class="s0">//if that element equals 1</span><span class="s1"> 
+                </span><span class="s2">if</span><span class="s1">(shape[row][index] !== </span><span class="s4">0</span><span class="s1">){ 
+ 
+                    cont.fillStyle = current.colour; 
+                    </span><span class="s0">//console.log(row + posy + 1 + &quot; &quot; + (index + posx) )</span><span class="s1"> 
+                    </span><span class="s2">if</span><span class="s1">(backTable[row + posy + </span><span class="s4">1</span><span class="s1">][index + posx] !== </span><span class="s4">0</span><span class="s1">) 
+                    </span><span class="s0">//call collision procedure</span><span class="s1"> 
+                        collision() 
+                    console.log(</span><span class="s3">&quot;COLLISION&quot;</span><span class="s1">) 
+                } 
+            } 
+        } 
+        </span><span class="s0">//check if the tile is touching the bottom</span><span class="s1"> 
+        </span><span class="s2">if</span><span class="s1">(current.position.y - checkBottom() &lt; </span><span class="s4">17</span><span class="s1">){ 
+            </span><span class="s0">//if its not then drop by 1</span><span class="s1"> 
+            current.position.y += </span><span class="s4">1</span><span class="s1">; 
+        } 
+ 
+ 
+ 
+ 
+} 
+ 
+</span><span class="s2">function </span><span class="s1">sortScores() { 
+    </span><span class="s0">//add the current score the the scores array</span><span class="s1"> 
+    scores.push(score) 
+    </span><span class="s2">do </span><span class="s1">{ 
+        </span><span class="s0">//default swap to false</span><span class="s1"> 
+        </span><span class="s2">var </span><span class="s1">swap = </span><span class="s2">false</span><span class="s1">; 
+        </span><span class="s0">//loop through the scores array</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">x = </span><span class="s4">0</span><span class="s1">; x &lt; scores.length-</span><span class="s4">1</span><span class="s1">; x++) { 
+            </span><span class="s0">//check if score is bigger than the next in the array</span><span class="s1"> 
+            </span><span class="s2">if </span><span class="s1">(scores[x] &gt; scores[x+</span><span class="s4">1</span><span class="s1">]) { 
+                </span><span class="s0">//if it is then swap them, bubble them</span><span class="s1"> 
+                </span><span class="s2">var </span><span class="s1">temp = scores[x]; 
+                scores[x] = scores[x+</span><span class="s4">1</span><span class="s1">]; 
+                scores[x+</span><span class="s4">1</span><span class="s1">] = temp; 
+                swap = </span><span class="s2">true</span><span class="s1">; 
+            } 
+        } 
+    } 
+        </span><span class="s0">//do whilst swap is true</span><span class="s1"> 
+    </span><span class="s2">while</span><span class="s1">(swap); 
+    </span><span class="s0">//remove the smallest score from the array</span><span class="s1"> 
+    scores.shift() 
+    </span><span class="s0">//rewrite and save the cookie.</span><span class="s1"> 
+    document.cookie=</span><span class="s3">&quot;scores=&quot; </span><span class="s1">+ scores + </span><span class="s3">&quot;; expires=Thu, 12 Mar 2020 12:00:00 GMT&quot;</span><span class="s1"> 
+} 
+ 
+</span><span class="s0">//procedure that is called when a collision occures</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">collision() { 
+    </span><span class="s0">//draw the current tile to the back table</span><span class="s1"> 
+    drawBack(current.shape, current.position.x, current.position.y, backTable); 
+    </span><span class="s0">//reset the x and y position of the shape</span><span class="s1"> 
+    current.position.y = -</span><span class="s4">2</span><span class="s1"> 
+    current.position.x = </span><span class="s4">5</span><span class="s1"> 
+    </span><span class="s0">//generate a random number between 0 and 6</span><span class="s1"> 
+    </span><span class="s2">var </span><span class="s1">rand = Math.floor(Math.random()*</span><span class="s4">7</span><span class="s1">); 
+    </span><span class="s0">//multiply the number by 4 as rotations are in groups of 4</span><span class="s1"> 
+    n = [rand*</span><span class="s4">4</span><span class="s1">] 
+    </span><span class="s0">//set new shape to random number</span><span class="s1"> 
+    current.shape = shapes[n] 
+    </span><span class="s0">//set colour to match the tile</span><span class="s1"> 
+    current.colour = colours[rand] 
+    </span><span class="s0">//reset rotation counter</span><span class="s1"> 
+    counter = </span><span class="s4">0</span><span class="s1"> 
+} 
+ 
+</span><span class="s0">//fucntion to check if any values are filled in teh left hand collum of array</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">minwidth(shape){ 
+    </span><span class="s0">//default first to false</span><span class="s1"> 
+    </span><span class="s2">var </span><span class="s1">first = </span><span class="s2">false</span><span class="s1"> 
+    </span><span class="s2">var </span><span class="s1">count = </span><span class="s4">0</span><span class="s1"> 
+    </span><span class="s0">//whilst theres nothing found then keep looping</span><span class="s1"> 
+    </span><span class="s2">while </span><span class="s1">(first == </span><span class="s2">false </span><span class="s1">&amp;&amp; count &lt; (shape.length -</span><span class="s4">1</span><span class="s1">)){ 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+            </span><span class="s0">//checks if first collum for that row is filled</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][</span><span class="s4">0</span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">){ 
+                first = </span><span class="s2">true</span><span class="s1"> 
+                </span><span class="s2">return</span><span class="s1">(</span><span class="s4">0</span><span class="s1">) 
+            } 
+        } 
+        count++ 
+    } 
+    </span><span class="s2">if </span><span class="s1">(first == </span><span class="s2">false</span><span class="s1">){ 
+        </span><span class="s2">return</span><span class="s1">(</span><span class="s4">1</span><span class="s1">) 
+    } 
+} 
+ 
+</span><span class="s0">//fucntion to check if any values are filled in teh rightt hand collum of array</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">maxwidth(shape){ 
+    </span><span class="s0">//default first to false</span><span class="s1"> 
+    </span><span class="s2">var </span><span class="s1">last = </span><span class="s2">false</span><span class="s1"> 
+    </span><span class="s2">var </span><span class="s1">count = </span><span class="s4">0</span><span class="s1"> 
+    </span><span class="s0">//whilst theres nothing found in the last collumn then keep looping</span><span class="s1"> 
+    </span><span class="s2">while </span><span class="s1">(last == </span><span class="s2">false </span><span class="s1">&amp;&amp; count &lt; (shape.length -</span><span class="s4">1</span><span class="s1">)){ 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; (shape.length - checkBottom()); row++){ 
+            </span><span class="s0">//checks if last collum for that row is filled</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][shape.length -</span><span class="s4">1 </span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">){ </span><span class="s0">//use - 1, i know the array will always be a square</span><span class="s1"> 
+                last = </span><span class="s2">true</span><span class="s1"> 
+                </span><span class="s2">return</span><span class="s1">(shape.length -</span><span class="s4">1</span><span class="s1">) 
+            } 
+        } 
+        count++ 
+    } 
+    </span><span class="s2">if </span><span class="s1">(last == </span><span class="s2">false</span><span class="s1">){ 
+        </span><span class="s2">return</span><span class="s1">(shape.length - </span><span class="s4">2</span><span class="s1">) 
+    } 
+} 
+ 
+</span><span class="s2">function </span><span class="s1">checkRHS(){ 
+    document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).classList.remove(</span><span class="s3">'redborder'</span><span class="s1">) 
+    </span><span class="s0">//(current.position.x + maxwidth(current.shape))</span><span class="s1"> 
+    </span><span class="s2">if</span><span class="s1">(current.position.x &gt;= </span><span class="s4">11 </span><span class="s1">- maxwidth(current.shape)){ 
+        </span><span class="s0">//console.log(&quot;edge found&quot;)</span><span class="s1"> 
+        </span><span class="s2">return false</span><span class="s1">; 
+    } 
+    shape = current.shape 
+    right = </span><span class="s2">true</span><span class="s1"> 
+    </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+        </span><span class="s0">//for each collumn in that row</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; shape.length; index++){ 
+            </span><span class="s0">//if that location is filled (equals 1)</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][index] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; backTable[row + current.position.y][index + current.position.x +</span><span class="s4">1</span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">){ 
+                </span><span class="s0">//draw that position to the backboard</span><span class="s1"> 
+                console.log(</span><span class="s3">&quot;CANT MOVE &quot;</span><span class="s1">) 
+                right = </span><span class="s2">false</span><span class="s1"> 
+            }</span><span class="s2">else</span><span class="s1">{ 
+                console.log(</span><span class="s3">&quot;MOVE&quot;</span><span class="s1">) 
+            } 
+        } 
+    } 
+    </span><span class="s2">if</span><span class="s1">(right == </span><span class="s2">true</span><span class="s1">){ 
+        </span><span class="s2">return true</span><span class="s1"> 
+    }</span><span class="s2">else</span><span class="s1">{ 
+        </span><span class="s2">return false</span><span class="s1"> 
+    } 
+} 
+ 
+</span><span class="s2">function </span><span class="s1">checkLHS(){ 
+    document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).classList.remove(</span><span class="s3">'redborder'</span><span class="s1">) 
+    </span><span class="s0">//console.log(current.position.x + minwidth(current.shape))</span><span class="s1"> 
+    </span><span class="s2">if</span><span class="s1">((current.position.x &lt;= </span><span class="s4">0 </span><span class="s1">- minwidth(current.shape)) ){ 
+        </span><span class="s0">//console.log(&quot;edge found&quot;)</span><span class="s1"> 
+        </span><span class="s2">return false</span><span class="s1">; 
+    } 
+    shape = current.shape 
+    left = </span><span class="s2">true</span><span class="s1"> 
+    </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; shape.length; row++){ 
+        </span><span class="s0">//for each collumn in that row</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; shape.length; index++){ 
+            </span><span class="s0">//if that location is filled (equals 1)</span><span class="s1"> 
+            </span><span class="s2">if</span><span class="s1">(shape[row][index] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; backTable[row + current.position.y][index + current.position.x -</span><span class="s4">1</span><span class="s1">] !== </span><span class="s4">0</span><span class="s1">){ 
+                </span><span class="s0">//draw that position to the backboard</span><span class="s1"> 
+                console.log(</span><span class="s3">&quot;CANT MOVE &quot;</span><span class="s1">) 
+                left = </span><span class="s2">false</span><span class="s1"> 
+            }</span><span class="s2">else</span><span class="s1">{ 
+                console.log(</span><span class="s3">&quot;MOVE&quot;</span><span class="s1">) 
+            } 
+        } 
+    } 
+    </span><span class="s2">if</span><span class="s1">(left == </span><span class="s2">true</span><span class="s1">){ 
+        </span><span class="s2">return true</span><span class="s1"> 
+    }</span><span class="s2">else</span><span class="s1">{ 
+        </span><span class="s2">return false</span><span class="s1"> 
+    } 
+} 
+ 
+</span><span class="s0">//check how many blank rows there are at the bottom</span><span class="s1"> 
+</span><span class="s2">function </span><span class="s1">checkBottom(){ 
+    </span><span class="s0">//initiallise 0</span><span class="s1"> 
+    total = </span><span class="s4">0</span><span class="s1"> 
+    </span><span class="s0">//loop through each element in the bottom row of the array</span><span class="s1"> 
+    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; current.shape.length; i++) { 
+        </span><span class="s0">//if there is anything then increase total to not equal 0</span><span class="s1"> 
+        total += current.shape[current.shape.length - </span><span class="s4">1</span><span class="s1">][i] 
+    } 
+    </span><span class="s0">//id nothing in bottom row return value 1</span><span class="s1"> 
+    </span><span class="s2">if </span><span class="s1">(total == </span><span class="s4">0</span><span class="s1">){ 
+        </span><span class="s2">return </span><span class="s4">1</span><span class="s1"> 
+    } 
+    </span><span class="s0">//otherwise return value 0, meaning bottom row is full</span><span class="s1"> 
+    </span><span class="s2">else</span><span class="s1">{ 
+        </span><span class="s2">return </span><span class="s4">0</span><span class="s1"> 
+    } 
+ 
+} 
+ 
+</span><span class="s2">function </span><span class="s1">checkRotate(){ 
+    </span><span class="s0">//to stop rotating before fully on canvas</span><span class="s1"> 
+    </span><span class="s0">//if it can rotate then return true, if it cant rotate return false</span><span class="s1"> 
+    </span><span class="s0">//check current rotation and set next shape value</span><span class="s1"> 
+    </span><span class="s2">if </span><span class="s1">(counter &lt; </span><span class="s4">3</span><span class="s1">) { 
+        nextShape = shapes[(parseInt(n)+</span><span class="s4">1</span><span class="s1">)] 
+    } </span><span class="s2">else </span><span class="s1">{ 
+        nextShape = shapes[(parseInt(n)-</span><span class="s4">3</span><span class="s1">)] 
+    } 
+    </span><span class="s0">//default turn to true</span><span class="s1"> 
+    turn = </span><span class="s2">true</span><span class="s1"> 
+    </span><span class="s0">//loop through each row in the next rotation</span><span class="s1"> 
+    </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">row = </span><span class="s4">0</span><span class="s1">; row &lt; nextShape.length; row++){ 
+        </span><span class="s0">//for each collumn in that row</span><span class="s1"> 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">var </span><span class="s1">index = </span><span class="s4">0</span><span class="s1">; index &lt; nextShape.length; index++) { 
+            </span><span class="s0">//if that location is filled (equals 1) and also is filled on the back board. Or trying to rotate out left or right hand side</span><span class="s1"> 
+            </span><span class="s2">if </span><span class="s1">(nextShape[row][index] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; backTable[row + current.position.y][index + current.position.x] !== </span><span class="s4">0 </span><span class="s1">|| nextShape[row][</span><span class="s4">0</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; (index + current.position.x - </span><span class="s4">1</span><span class="s1">) &lt;= -</span><span class="s4">2 </span><span class="s1">|| nextShape[row][</span><span class="s4">0</span><span class="s1">] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; (index + current.position.x + </span><span class="s4">1</span><span class="s1">) &gt;= </span><span class="s4">13 </span><span class="s1">|| nextShape[row][index] !== </span><span class="s4">0 </span><span class="s1">&amp;&amp; (row+current.position.y &lt; </span><span class="s4">0</span><span class="s1">)) { 
+                </span><span class="s0">//return false, unable to rotate</span><span class="s1"> 
+                turn = </span><span class="s2">false</span><span class="s1"> 
+            } 
+        } 
+    } 
+    </span><span class="s0">//if able to turn then return true</span><span class="s1"> 
+    </span><span class="s2">if</span><span class="s1">(turn == </span><span class="s2">true</span><span class="s1">){ 
+        document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).classList.remove(</span><span class="s3">'redborder'</span><span class="s1">) 
+        </span><span class="s2">return true</span><span class="s1"> 
+        </span><span class="s0">//otherwise return false</span><span class="s1"> 
+    }</span><span class="s2">else</span><span class="s1">{ 
+        document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).classList.add(</span><span class="s3">'redborder'</span><span class="s1">) 
+        </span><span class="s2">return false</span><span class="s1"> 
+    } 
+} 
+ 
+ 
+</span><span class="s0">//if a key on the keyboard is pressed</span><span class="s1"> 
+document.onkeypress = </span><span class="s2">function</span><span class="s1">(key) { 
+    </span><span class="s0">//if 'a' key is pressed</span><span class="s1"> 
+    </span><span class="s2">if </span><span class="s1">(key.keyCode == </span><span class="s4">97</span><span class="s1">) { 
+        </span><span class="s0">//check if able to move left</span><span class="s1"> 
+        </span><span class="s2">if </span><span class="s1">(checkLHS()) { 
+            </span><span class="s0">//if able to move left, move left</span><span class="s1"> 
+            current.position.x -= </span><span class="s4">1</span><span class="s1">; 
+        } 
+        ; 
+        fill(); 
+    } 
+    </span><span class="s0">// if the 'd' key is pressed</span><span class="s1"> 
+    </span><span class="s2">else if </span><span class="s1">(key.keyCode == </span><span class="s4">100</span><span class="s1">) { 
+        </span><span class="s0">//check if able to move right</span><span class="s1"> 
+        </span><span class="s2">if </span><span class="s1">(checkRHS()) { 
+            </span><span class="s0">//if able to move left, move right</span><span class="s1"> 
+            current.position.x += </span><span class="s4">1</span><span class="s1">; 
+        } 
+        ; 
+        fill() 
+    } 
+    </span><span class="s0">//if 's' key is pressed</span><span class="s1"> 
+    </span><span class="s2">else if </span><span class="s1">(key.keyCode == </span><span class="s4">115</span><span class="s1">) { 
+        document.getElementById(</span><span class="s3">'rush'</span><span class="s1">).classList.remove(</span><span class="s3">'redborder'</span><span class="s1">) 
+        </span><span class="s2">if </span><span class="s1">(over == </span><span class="s2">false</span><span class="s1">){ 
+            drop() 
+            fill(); 
+        } 
+        </span><span class="s0">//drop the tile</span><span class="s1"> 
+ 
+    } 
+    </span><span class="s0">//if the 'w' key is pressed</span><span class="s1"> 
+    </span><span class="s2">else if </span><span class="s1">(key.keyCode == </span><span class="s4">119</span><span class="s1">) { 
+        </span><span class="s0">//check if able to rotate</span><span class="s1"> 
+        </span><span class="s2">if </span><span class="s1">(checkRotate()){ 
+            </span><span class="s0">//if able to rotate then increase rotation counter by one</span><span class="s1"> 
+            </span><span class="s2">if </span><span class="s1">(counter &lt; </span><span class="s4">3</span><span class="s1">) { 
+                n++; 
+                counter++ 
+                </span><span class="s0">//if rotation counter is =3 then reset the rotation, go back to original rotation</span><span class="s1"> 
+            } </span><span class="s2">else </span><span class="s1">{ 
+                counter = </span><span class="s4">0</span><span class="s1">; 
+                n -= </span><span class="s4">3</span><span class="s1"> 
+            } 
+            </span><span class="s0">//set shape to new rotation</span><span class="s1"> 
+            current.shape = shapes[n] 
+            fill() 
+        } 
+    }; 
+}; 
+ 
+</span></pre>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>game.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,0); }
+.s1 { color: rgb(0,0,128); font-weight: bold; }
+.s2 { color: rgb(0,0,0); }
+.s3 { color: rgb(0,0,128); font-weight: bold; }
+.s4 { color: rgb(0,0,255); font-weight: bold; }
+.s5 { color: rgb(0,0,255); }
+.s6 { color: rgb(0,128,0); font-weight: bold; }
+.s7 { color: rgb(0,0,255); font-weight: bold; }
+.s8 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+game.html</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&lt;</span><span class="s1">html</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;</span><span class="s1">head</span><span class="s0">&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;</span><span class="s1">title</span><span class="s0">&gt;</span><span class="s2">Rush</span><span class="s0">&lt;/</span><span class="s1">title</span><span class="s0">&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;</span><span class="s1">style</span><span class="s0">&gt;</span><span class="s2"> 
+        </span><span class="s3">html</span><span class="s2">, </span><span class="s3">body </span><span class="s2">{ 
+            </span><span class="s4">height</span><span class="s2">:</span><span class="s5">100</span><span class="s2">%; 
+            </span><span class="s4">margin</span><span class="s2">:</span><span class="s5">0</span><span class="s2">; 
+            </span><span class="s4">padding</span><span class="s2">:</span><span class="s5">0</span><span class="s2">; 
+            } 
+        </span><span class="s3">body </span><span class="s2">{ 
+            </span><span class="s4">background</span><span class="s2">: </span><span class="s3">#232323</span><span class="s2">; 
+            </span><span class="s4">font-family</span><span class="s2">: </span><span class="s3">Helvetica</span><span class="s2">; 
+            </span><span class="s4">font-size</span><span class="s2">: </span><span class="s5">2</span><span class="s6">em</span><span class="s2">; 
+            </span><span class="s4">text-align</span><span class="s2">: </span><span class="s6">center</span><span class="s2">; 
+            </span><span class="s4">color</span><span class="s2">: </span><span class="s6">white</span><span class="s2">; 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+        } 
+        .</span><span class="s3">hideBody</span><span class="s2">{ 
+            </span><span class="s4">opacity</span><span class="s2">: </span><span class="s5">0</span><span class="s2">; 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+        } 
+        </span><span class="s3">h1</span><span class="s2">{ 
+            </span><span class="s4">margin</span><span class="s2">:</span><span class="s5">0</span><span class="s2">; 
+            </span><span class="s4">padding</span><span class="s2">:</span><span class="s5">0</span><span class="s2">; 
+            </span><span class="s4">vertical-align</span><span class="s2">:</span><span class="s6">middle</span><span class="s2">; 
+            </span><span class="s4">display</span><span class="s2">:</span><span class="s6">table-cell</span><span class="s2">; 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+        } 
+        </span><span class="s3">#section1 </span><span class="s2">{ 
+            </span><span class="s4">width</span><span class="s2">:</span><span class="s5">100</span><span class="s2">%; 
+            </span><span class="s4">min-height</span><span class="s2">:</span><span class="s5">100</span><span class="s2">%; 
+            </span><span class="s4">text-align</span><span class="s2">:</span><span class="s6">center</span><span class="s2">; 
+            </span><span class="s4">display</span><span class="s2">:</span><span class="s6">table</span><span class="s2">; 
+            </span><span class="s4">position</span><span class="s2">: </span><span class="s6">fixed</span><span class="s2">; 
+} 
+        </span><span class="s3">canvas </span><span class="s2">{ 
+            </span><span class="s4">border</span><span class="s2">: </span><span class="s6">solid </span><span class="s5">.2</span><span class="s6">em </span><span class="s3">#fff</span><span class="s2">; 
+            </span><span class="s4">height</span><span class="s2">: </span><span class="s5">90</span><span class="s6">vh</span><span class="s2">; 
+            </span><span class="s4">margin-top</span><span class="s2">: </span><span class="s5">5</span><span class="s6">vh</span><span class="s2"> 
+        } 
+        .</span><span class="s3">side </span><span class="s2">{ 
+            </span><span class="s4">position</span><span class="s2">: </span><span class="s6">absolute</span><span class="s2">; 
+            </span><span class="s4">right</span><span class="s2">: </span><span class="s5">.5</span><span class="s6">em</span><span class="s2">; 
+            </span><span class="s4">top</span><span class="s2">: </span><span class="s5">50</span><span class="s2">%; 
+            </span><span class="s4">transform</span><span class="s2">: </span><span class="s3">translate</span><span class="s2">(</span><span class="s5">0</span><span class="s2">,-</span><span class="s5">50</span><span class="s2">%); 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+        } 
+        </span><span class="s3">#side p</span><span class="s2">{ 
+            </span><span class="s4">text-align</span><span class="s2">: </span><span class="s6">left</span><span class="s2">; 
+            </span><span class="s4">padding</span><span class="s2">: </span><span class="s5">5</span><span class="s6">px</span><span class="s2">; 
+        } 
+        </span><span class="s3">a</span><span class="s2">{ 
+            </span><span class="s4">color</span><span class="s2">: </span><span class="s3">#FFF</span><span class="s2">; 
+            </span><span class="s4">text-decoration</span><span class="s2">: </span><span class="s6">none</span><span class="s2">; 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+        } 
+        .</span><span class="s3">hide</span><span class="s2">{ 
+            </span><span class="s4">opacity</span><span class="s2">: </span><span class="s5">0</span><span class="s2">; 
+            </span><span class="s4">transition</span><span class="s2">: </span><span class="s6">all </span><span class="s5">.5</span><span class="s6">s ease </span><span class="s2">; 
+ 
+        } 
+        .</span><span class="s3">redborder</span><span class="s2">{ 
+            </span><span class="s4">border</span><span class="s2">: </span><span class="s6">solid </span><span class="s5">.2</span><span class="s6">em red</span><span class="s2">; 
+        } 
+ 
+    </span><span class="s0">&lt;/</span><span class="s1">style</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/</span><span class="s1">head</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;</span><span class="s1">body </span><span class="s7">class=</span><span class="s8">&quot;hideBody&quot;</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;</span><span class="s1">div </span><span class="s7">style=</span><span class="s8">&quot;</span><span class="s4">z-index</span><span class="s2">: </span><span class="s5">0</span><span class="s8">&quot; </span><span class="s7">id=</span><span class="s8">&quot;section1&quot;</span><span class="s0">&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;</span><span class="s1">h1</span><span class="s0">&gt;&lt;</span><span class="s1">a </span><span class="s7">id=</span><span class="s8">&quot;title&quot; </span><span class="s7">href=</span><span class="s8">&quot;index.html&quot;</span><span class="s0">&gt;</span><span class="s2">RUSH</span><span class="s0">&lt;/</span><span class="s1">a</span><span class="s0">&gt;&lt;/</span><span class="s1">h1</span><span class="s0">&gt;&lt;</span><span class="s1">br</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/</span><span class="s1">div</span><span class="s0">&gt;</span><span class="s2"> 
+ 
+</span><span class="s0">&lt;</span><span class="s1">div </span><span class="s7">id=</span><span class="s8">&quot;side&quot; </span><span class="s7">class=</span><span class="s8">&quot;side&quot;</span><span class="s0">&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;</span><span class="s1">p </span><span class="s7">id=</span><span class="s8">&quot;score&quot;</span><span class="s0">&gt; </span><span class="s2">Score: </span><span class="s0">&lt;/</span><span class="s1">p</span><span class="s0">&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;</span><span class="s1">a </span><span class="s7">href=</span><span class="s8">&quot;scores.html&quot;</span><span class="s0">&gt;&lt;</span><span class="s1">p </span><span class="s7">id=</span><span class="s8">&quot;hscore&quot;</span><span class="s0">&gt;</span><span class="s2">Highscore: </span><span class="s0">&lt;/</span><span class="s1">p</span><span class="s0">&gt;&lt;/</span><span class="s1">a</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/</span><span class="s1">div</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;</span><span class="s1">canvas </span><span class="s7">id=</span><span class="s8">&quot;rush&quot; </span><span class="s7">width=</span><span class="s8">&quot;240&quot; </span><span class="s7">height=</span><span class="s8">&quot;400&quot; </span><span class="s7">style=</span><span class="s8">&quot;</span><span class="s4">z-index</span><span class="s2">: </span><span class="s5">5</span><span class="s8">&quot;</span><span class="s0">&gt;&lt;/</span><span class="s1">canvas</span><span class="s0">&gt;</span><span class="s2"> 
+ 
+ 
+</span><span class="s0">&lt;</span><span class="s1">script</span><span class="s0">&gt;</span><span class="s2"> 
+    window.onload = </span><span class="s3">function</span><span class="s2">() { 
+        document.querySelector(</span><span class="s6">&quot;.hideBody&quot;</span><span class="s2">).classList.remove(</span><span class="s6">&quot;hideBody&quot;</span><span class="s2">); 
+        </span><span class="s3">if </span><span class="s2">(document.cookie == </span><span class="s6">&quot;&quot;</span><span class="s2">){document.cookie=</span><span class="s6">&quot;scores= 0,0,0,0,0; expires=Thu, 12 Mar 2020 12:00:00 GMT&quot;</span><span class="s2">} 
+        </span><span class="s3">var </span><span class="s2">totalCookie = document.cookie.split(</span><span class="s6">&quot;=&quot;</span><span class="s2">); 
+        </span><span class="s3">var </span><span class="s2">scoresCookie = totalCookie[</span><span class="s5">1</span><span class="s2">]; 
+        </span><span class="s3">var </span><span class="s2">scores = scoresCookie.split(</span><span class="s6">&quot;,&quot;</span><span class="s2">); 
+        console.log(scores); 
+        len = (scores.length)-</span><span class="s5">1</span><span class="s2">; 
+        document.getElementById(</span><span class="s6">&quot;hscore&quot;</span><span class="s2">).innerText = </span><span class="s6">&quot;Highscore: &quot; </span><span class="s2">+ scores[len] 
+    } 
+</span><span class="s0">&lt;/</span><span class="s1">script</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;</span><span class="s1">script </span><span class="s7">src=</span><span class="s8">&quot;rush.js&quot;</span><span class="s0">&gt;&lt;/</span><span class="s1">script</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/</span><span class="s1">body</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/</span><span class="s1">html</span><span class="s0">&gt;</span></pre>
+</body>
+</html>

@@ -158,6 +158,7 @@ var shapes =[
 //set rotation counter and shape counter to 0
 var n = 0
 var counter = 0
+var over = false
 
 //declare the first shape that drops and its colour and its position x and y positions
 var current ={
@@ -273,60 +274,64 @@ var interval = setInterval(drop,1000);
 
 //function to drop tile down
 function drop() {
+
     fill()
     //checks if game should be over by checking the top row to see if filled
-    if(backTable[1][6] !== 0 || backTable[1][5] !== 0 || backTable[1][7] !== 0|| backTable[0][4] !== 0 || backTable[0][3] !== 0 || backTable[0][2] !== 0 || backTable[0][8] !== 0 || backTable[0][9] !== 0 || backTable[0][10] !== 0) {
-        //if game is over then sort the scores
-        sortScores()
-        //stop the drop clock
-        clearInterval(interval)
-        console.log("Game over")
-        //redirect to the scores page with some transitions
-        document.getElementById('rush').style.opacity = 0
-        document.getElementById('side').style.opacity = 0
-        document.getElementById('title').classList.add('hide')
-        clearInterval(interval)
-        setTimeout(function () {
-            document.getElementById('title').classList.remove('hide')
-            //flash score to player
-            document.getElementById('title').innerText = "Score - " + score;
-        },1000);
+        if(backTable[1][6] !== 0 || backTable[1][5] !== 0 || backTable[1][7] !== 0|| backTable[0][4] !== 0 || backTable[0][3] !== 0 || backTable[0][2] !== 0 || backTable[0][8] !== 0 || backTable[0][9] !== 0 || backTable[0][10] !== 0) {
+            over = true
+            //if game is over then sort the scores
+            //stop the drop clock
+            clearInterval(interval)
+            sortScores()
+            console.log("Game over")
+            //redirect to the scores page with some transitions
+            document.getElementById('rush').style.opacity = 0
+            document.getElementById('side').style.opacity = 0
+            document.getElementById('title').classList.add('hide')
+            clearInterval(interval)
+            setTimeout(function () {
+                document.getElementById('title').classList.remove('hide')
+                //flash score to player
+                document.getElementById('title').innerText = "Score - " + score;
+            },1000);
 
-        setTimeout(function () {
-            //open scores page
-            window.open("scores.html","_self")
-        },3000);
+            setTimeout(function () {
+                //open scores page
+                window.open("scores.html","_self")
+            },3000);
 
-    }
-    //checks if tile is on the bottom row
-    if(current.position.y - checkBottom() == 17){
-        //if it is then call collision function
-        collision()
-    }
-    shape = current.shape
-    posy = current.position.y
-    posx = current.position.x
-    //loop through each row in the shape
-    for(var row = 0; row < shape.length; row++){
-        //loop through each element in the row
-        for(var index = 0; index < shape.length; index++){
-            //if that element equals 1
-            if(shape[row][index] !== 0){
+        }
+        //checks if tile is on the bottom row
+        if(current.position.y - checkBottom() == 17){
+            //if it is then call collision function
+            collision()
+        }
+        shape = current.shape
+        posy = current.position.y
+        posx = current.position.x
+        //loop through each row in the shape
+        for(var row = 0; row < shape.length; row++){
+            //loop through each element in the row
+            for(var index = 0; index < shape.length; index++){
+                //if that element equals 1
+                if(shape[row][index] !== 0){
 
-                cont.fillStyle = current.colour;
-                //console.log(row + posy + 1 + " " + (index + posx) )
-                if(backTable[row + posy + 1][index + posx] !== 0)
-                //call collision procedure
-                    collision()
-                console.log("COLLISION")
+                    cont.fillStyle = current.colour;
+                    //console.log(row + posy + 1 + " " + (index + posx) )
+                    if(backTable[row + posy + 1][index + posx] !== 0)
+                    //call collision procedure
+                        collision()
+                    console.log("COLLISION")
+                }
             }
         }
-    }
-    //check if the tile is touching the bottom
-    if(current.position.y - checkBottom() < 17){
-        //if its not then drop by 1
-        current.position.y += 1;
-    }
+        //check if the tile is touching the bottom
+        if(current.position.y - checkBottom() < 17){
+            //if its not then drop by 1
+            current.position.y += 1;
+        }
+
+
 
 
 }
@@ -555,9 +560,12 @@ document.onkeypress = function(key) {
     //if 's' key is pressed
     else if (key.keyCode == 115) {
         document.getElementById('rush').classList.remove('redborder')
+        if (over == false){
+            drop()
+            fill();
+        }
         //drop the tile
-        drop()
-        fill();
+
     }
     //if the 'w' key is pressed
     else if (key.keyCode == 119) {
@@ -578,5 +586,4 @@ document.onkeypress = function(key) {
         }
     };
 };
-fill();
 
