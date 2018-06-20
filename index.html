@@ -1,203 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<style>
-	
-		*{
-            font-family: Helvetica,Arial,sans-serif;
-        }
+<style>
+	.center { 
+		height: 100vh;
+		position: relative;
 		
-		.square {
-			position:relative;
-			overflow:hidden;
-			padding-bottom:100%;
-			background-color:  grey;
-		}
+	}
 
-		div.square.enabled:hover{
-			background-color: white;
-			transition: 1s;
-		}
-		.col{
-			padding: 2.5px;
-		}
-		.container{
-			width: 100%;
-					}
-		span{
-			position: absolute;
-		}
-		
-		a{
-			color: white;
-		}
-	
-	</style>
+	body{
+		margin:0;
+		padding: 0;
+		font-family: Helvetica;
+	}
+
+	.center .square {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+	.square{
+		width: 800px;
+		height: 800px;
+		background: salmon;
+	}
+
+	.ssquare{
+		width: 100px;
+		height: 100px;
+		background: white;
+		float: left;
+	}
+
+	.msquare{
+		width: 200px;
+		height: 200px;
+		background: white;
+		float: left;
+	}
+
+	.row{
+		width: 800px;
+		height: 200px
+	}
+
+	.small{
+		width: 200px;
+		height: 200px;
+		float: left;
+	}
+</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row" style="margin-top: 2.5px">
-			<div class="col" style="margin-left: 2.5px">
-				<a href="calculator/index.html"><div class="square enabled">
-					<span><h3>StockX Calculator</h3></span>
-				</div></a>
 
-			</div>
-			<div class="col">
-				<a href="#"><div class="square enabled">
-					<span><h3>Pong</h3></span>
-				</div></a>
-
-			</div>
-			<div class="col">
-				<a href="#"><div class="square enabled">
-					<span><h3>Cookies</h3></span>
-				</div></a>
-
-			</div>
-			<div class="col">
-				<a href="#"><div class="square enabled">
-					<span><h3>Rush</h3></span>
-				</div></a>
-
-			</div>
-			<div class="col">
-				<a href="mesh.html"><div class="square enabled">
-					<span><h3>Mesh</h3></span>
-				</div></a>
-
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col"  style="margin-right: 2.5px">
-				<div class="square">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
+<div class="center">
+	<div class="square">
 		<div class="row">
-			<div class="col" style="margin-left: 2.5px">
-				<div class="square">
-				</div>
-
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col"  style="margin-right: 2.5px">
-				<div class="square">
-				</div>
+			<div class="msquare"></div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
 		<div class="row">
-			<div class="col" style="margin-left: 2.5px">
-				<div class="square">
-				</div>
-
+			<div class="msquare"></div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
+				<a href="calculator/index.html"><div class="ssquare" style="background-image: url(stockx2.jpg); background-size: cover;"></div></a>
+				<a href="https://github.com/fraserdale"><div class="ssquare" style="background-image: url(pt1.jpg); background-size: cover;"></div></a>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
+			<div class="small">
+				<a href="https://twitter.com/jalfrazi_"><div class="ssquare" style="background-image: url(twitter.png); background-size: cover;"></div></a>
+				<div class="ssquare" style="background:grey"></div>
+				<a href="https://github.com/fraserdale"><div class="ssquare" style="background-image: url(pt2.jpg); background-size: cover;"></div></a>
+				<div class="ssquare"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col"  style="margin-right: 2.5px">
-				<div class="square">
-				</div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
 		<div class="row">
-			<div class="col" style="margin-left: 2.5px">
-				<div class="square">
-				</div>
-
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<a href="https://github.com/fraserdale"><div class="ssquare" style="background-image: url(pt3.jpg); background-size: cover;"></div></a>
+				<div class="ssquare" style="background:grey"></div>
+				<a href="mesh.html"><div class="ssquare" style="background-image: url(meshforce.png); background-size: cover;"></div></a>
+			</div>			
+			<div class="small">
+				<a href="https://github.com/fraserdale"><div class="ssquare" style="background-image: url(pt4.jpg); background-size: cover;"></div></a>
+				<a href="rush/index.html"><div class="ssquare" style="background-image: url(tetris.png); background-size: cover;"></div></a>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
+			<div class="msquare"></div>
+		</div>
+		<div class="row">
+			<div class="small">
+				<div class="ssquare" style="background:darkgrey"></div>
+				<div class="ssquare"></div>				
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:darkgrey"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
+			<div class="msquare"></div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare"></div>
 			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col">
-				<div class="square">
-				</div>
-			</div>
-			<div class="col"  style="margin-right: 2.5px">
-				<div class="square">
-				</div>
+			<div class="small">
+				<div class="ssquare"></div>
+				<div class="ssquare"></div>
+				<div class="ssquare" style="background:grey"></div>
+				<div class="ssquare" style="background:grey"></div>
 			</div>
 		</div>
-	</div>
+		  
+
+  </div>
+</div> 
+
 
 </body>
 </html>
