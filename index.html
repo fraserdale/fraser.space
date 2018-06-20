@@ -3,14 +3,24 @@
 <head>
 	<title>Playground</title>
 	<style>
-		.w3-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 		.w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
 		.w3-animate-top{position:relative;animation:animatetop 0.8s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
 		.w3-animate-left{position:relative;animation:animateleft 0.8s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
 		.w3-animate-right{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
 		.w3-animate-bottom{position:relative;animation:animatebottom 0.8s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
-		.w3-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
-		.w3-animate-input{transition:width 0.4s ease-in-out}.w3-animate-input:focus{width:100%!important}
+		
+		.w3-animate-opacity-slow{animation:opac 1.5s}@keyframes opac{from{opacity:0} to{opacity:1}}
+		.w3-animate-top-slow{position:relative;animation:animatetop 1.5s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+		.w3-animate-left-slow{position:relative;animation:animateleft 1.5s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+		.w3-animate-right-slow{position:relative;animation:animateright 1.5s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+		.w3-animate-bottom-slow{position:relative;animation:animatebottom 1.5s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
+
+		.w3-animate-opacity-med{animation:opac 1s}@keyframes opac{from{opacity:0} to{opacity:1}}
+		.w3-animate-top-med{position:relative;animation:animatetop 1s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+		.w3-animate-left-med{position:relative;animation:animateleft 1s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+		.w3-animate-right-med{position:relative;animation:animateright 1s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+		.w3-animate-bottom-med{position:relative;animation:animatebottom 1s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
+		
 		.center { 
 			height: 100vh;
 			position: relative;
@@ -72,7 +82,7 @@
 			<div class="small">
 				<div class="ssquare"></div>
 				<div class="ssquare" style="background:darkgrey"></div>
-				<a href="mailto:fraserdale2@gmail.com"><div class="ssquare w3-animate-top" style="background-image: url(gmail.jpg); background-size: cover;"></div></a>
+				<a href="mailto:fraserdale2@gmail.com"><div class="ssquare w3-animate-top-slow" style="background-image: url(gmail.jpg); background-size: cover;"></div></a>
 				<div class="ssquare"></div>
 			</div>
 			<div class="small">
@@ -85,7 +95,7 @@
 			<div class="small">
 				<div class="ssquare"></div>
 				<div class="ssquare"></div>
-				<a href="https://twitter.com/samuraicooks"><div class="ssquare w3-animate-right" style="background-image: url(samurai.png); background-size: cover;"></div></a>
+				<a href="https://twitter.com/samuraicooks"><div class="ssquare w3-animate-right-slow" style="background-image: url(samurai.png); background-size: cover;"></div></a>
 				<div class="ssquare" style="background:grey"></div>
 			</div>
 		</div>
@@ -94,11 +104,11 @@
 			<div class="small">
 				<div class="ssquare"></div>
 				<div class="ssquare" style="background:darkgrey"></div>
-				<a href="calculator/index.html"><div class="ssquare w3-animate-left" style="background-image: url(stockx2.jpg); background-size: cover;"></div></a>
+				<a href="calculator/index.html"><div class="ssquare w3-animate-left-med" style="background-image: url(stockx2.jpg); background-size: cover;"></div></a>
 				<a href="https://github.com/fraserdale"><div class="ssquare w3-animate-top" style="background-image: url(pt1.jpg); background-size: cover;"></div></a>
 			</div>
 			<div class="small">
-				<a href="https://twitter.com/jalfrazi_"><div class="ssquare w3-animate-top" style="background-image: url(twitter.png); background-size: cover;"></div></a>
+				<a href="https://twitter.com/jalfrazi_"><div class="ssquare w3-animate-top-med" style="background-image: url(twitter.png); background-size: cover;"></div></a>
 				<div class="ssquare" style="background:grey"></div>
 				<a href="https://github.com/fraserdale"><div class="ssquare w3-animate-right" style="background-image: url(pt2.jpg); background-size: cover;"></div></a>
 				<div class="ssquare"></div>
@@ -121,11 +131,11 @@
 				<div class="ssquare"></div>
 				<a href="https://github.com/fraserdale"><div class="ssquare w3-animate-left" style="background-image: url(pt3.jpg); background-size: cover;"></div></a>
 				<div class="ssquare" style="background:grey"></div>
-				<a href="mesh.html"><div class="ssquare w3-animate-left" style="background-image: url(meshforce.png); background-size: cover;"></div></a>
+				<a href="mesh.html"><div class="ssquare w3-animate-left-med" style="background-image: url(meshforce.png); background-size: cover;"></div></a>
 			</div>			
 			<div class="small">
 				<a href="https://github.com/fraserdale"><div class="ssquare w3-animate-top" style="background-image: url(pt4.jpg); background-size: cover;"></div></a>
-				<a href="rush/index.html"><div class="ssquare w3-animate-right" style="background-image: url(tetris.png); background-size: cover;"></div></a>
+				<a href="rush/index.html"><div class="ssquare w3-animate-right-med" style="background-image: url(tetris.png); background-size: cover;"></div></a>
 				<div class="ssquare" style="background:grey"></div>
 				<div class="ssquare" style="background:grey"></div>
 			</div>
@@ -133,7 +143,7 @@
 		</div>
 		<div class="row">
 			<div class="small">
-				<a href="https://swiftproxies.io"><div class="ssquare w3-animate-left" style="background-image: url(swift.jpg); background-size: cover;"></div></a>
+				<a href="https://swiftproxies.io"><div class="ssquare w3-animate-left-slow" style="background-image: url(swift.jpg); background-size: cover;"></div></a>
 				<div class="ssquare"></div>				
 				<div class="ssquare"></div>
 				<div class="ssquare" style="background:darkgrey"></div>
@@ -148,7 +158,7 @@
 			<div class="small">
 				<div class="ssquare"></div>
 				<div class="ssquare"></div>
-				<a href="https://snkrtalk.io"><div class="ssquare w3-animate-right" style="background-image: url(snkrtalk.jpg); background-size: cover;"></div></a>
+				<a href="https://snkrtalk.io"><div class="ssquare w3-animate-right-slow" style="background-image: url(snkrtalk.jpg); background-size: cover;"></div></a>
 				<div class="ssquare" style="background:grey"></div>
 			</div>
 		</div>
